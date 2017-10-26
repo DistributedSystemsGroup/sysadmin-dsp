@@ -1,0 +1,18 @@
+[submodule "dotfiles/vimfiles/bundle/detectindent"]
+	path = dotfiles/vimfiles/bundle/detectindent
+	url = https://github.com/ciaranm/detectindent.git
+[submodule "dotfiles/vimfiles/bundle/syntastic"]
+	path = dotfiles/vimfiles/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "dotfiles/vimfiles/bundle/vim-colors-solarized"]
+	path = dotfiles/vimfiles/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "dotfiles/vimfiles/bundle/vim-makeshift"]
+	path = dotfiles/vimfiles/bundle/vim-makeshift
+	url = http://github.com/johnsyweb/vim-makeshift/
+[submodule "dotfiles/vimfiles/bundle/vim-pencil"]
+	path = dotfiles/vimfiles/bundle/vim-pencil
+	url = https://github.com/reedes/vim-pencil
+[submodule "dotfiles/vimfiles/bundle/vim-markdown"]
+	path = dotfiles/vimfiles/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git

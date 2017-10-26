@@ -1,0 +1,136 @@
+set autoindent
+set nocompatible
+set nobackup
+set backspace=indent,eol,start
+set ignorecase
+set smartcase
+set laststatus=2
+set magic
+set ruler
+set shiftwidth=4
+set tabstop=8
+set softtabstop=0
+set expandtab
+set smarttab
+set shortmess=finrxtoO
+set showcmd
+set showmatch
+set showmode
+set title
+set ttyfast
+set errorbells
+set visualbell
+set modeline
+set modelines=5
+set whichwrap=<,>,[,]
+set nowrap
+set undolevels=100
+set cpoptions=aABceFns
+set viminfo=h,'100,f1,\"50,r/tmp
+set hlsearch
+set incsearch
+set autowrite
+set tabpagemax=40
+set completeopt=menu,longest,preview,menuone
+set mouse=a
+set wildchar=<Tab> wildmenu wildmode=full
+set encoding=utf-8
+set fileformats=unix,dos
+set noshowmode
+set linebreak
+"set showbreak=+
+"set relativenumber
+set number
+set display=lastline
+
+call pathogen#infect()
+
+syntax on
+set synmaxcol=256
+
+filetype indent on
+filetype plugin on
+
+autocmd BufRead * set formatoptions=tcqnb
+autocmd BufRead,BufNewFile, *.c,*.h,*.cc,*.cpp,*.cxx,*.hpp,*.H setlocal cindent formatoptions=croql
+autocmd BufRead,BufNewFile *.pl,*.cgi,*.sh setlocal cindent
+autocmd FileType python setlocal nosmartindent smarttab expandtab shiftwidth=4 tabstop=4
+autocmd FileType makefile setlocal noexpandtab
+autocmd FileType tex setlocal spell spelllang=en wrap iskeyword+=:
+autocmd BufRead,BufNewFile *.txt setlocal wrap spell spelllang=en,it
+autocmd BufRead,BufNewFile *.mdown,*.md,*.mkd setlocal wrap filetype=markdown spelllang=en,it spell shiftwidth=4 tabstop=4
+autocmd BufRead,BufNewFile *.mdown,*.md,*.mkd SoftPencil
+
+autocmd BufReadPost * :DetectIndent
+
+iab shoudl should
+iab teh the
+iab cioa ciao
+iab Cioa Ciao
+
+com W w
+com Wa wa
+com Wq wq
+com WQ wq
+com Q q
+com Qa qa
+
+set background=dark
+if !has('gui_running')
+	let g:solarized_termcolors=256
+endif
+colorscheme solarized
+
+let g:netrw_ftp_cmd="ftp -p"
+
+" LaTeX
+let g:tex_flavor='latex'
+let Tex_FoldedSections=""
+let Tex_FoldedEnvironments=""
+let Tex_FoldedMisc=""
+let g:Tex_MultipleCompileFormats="pdf"
+let g:Tex_DefaultTargetFormat="pdf"
+let g:Tex_UseMakefile=0
+
+" Syntastic
+let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_pep8_args = "--ignore=E501"
+
+" ### EMAIL and Mutt ###
+autocmd BufRead mutt* set tw=72
+" this new version handles cases where there are several signatures
+" (sometimes added by mailing list software)
+function! Mail_Erase_Sig()
+  " search for the signature pattern (takes into account signature delimiters
+  " from broken mailers that forget the space after the two dashes)
+  let i = 0
+  while ((i <= line('$')) && (getline(i) !~ '^> *-- \=$'))
+    let i = i + 1
+  endwhile
+
+  " if found, then
+  if (i != line('$') + 1)
+    " first, look for our own signature, to avoid deleting it
+    let j = i
+    while (j < line('$') && (getline(j + 1) !~ '^-- $'))
+      let j = j + 1
+    endwhile
+
+    " second, search for the last non empty (non sig) line
+    while ((i > 0) && (getline(i - 1) =~ '^\(>\s*\)*$'))
+      let i = i - 1
+    endwhile
+
+    " third, delete those lines plus the signature
+    exe ':'.i.','.j.'d'
+  endif
+endfunction
+autocmd BufRead mutt* silent call Mail_Erase_Sig()
+map ,re 1G/^Subject:<CR>:s/\(Re: \)\+/Re: /e<CR>
+autocmd BufRead mutt* :normal ,re
+autocmd BufRead mutt* set spell spelllang=it,en
+autocmd BufRead mutt* /^$/
+
+let g:vim_markdown_folding_disabled = 1
+let g:markdown_fenced_languages = ['python', 'css', 'sh', 'javascript', 'js=javascript', 'json=javascript', 'c', 'ini=dosini', 'xml', 'html']
+
