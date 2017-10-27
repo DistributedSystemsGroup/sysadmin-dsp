@@ -1,0 +1,29 @@
+---
+- name: Install Zookeeper daemon
+  apt: name=zookeeperd
+- name: Create configuration directory
+  file: path=/etc/zookeeper/conf_bigfoot state=directory mode=0755
+- name: Copy configuration files
+  copy: src=configuration.xsl dest=/etc/zookeeper/conf_bigfoot/configuration.xsl
+  notify:
+    - restart zookeeper
+- copy: src=environment dest=/etc/zookeeper/conf_bigfoot/environment
+  notify:
+    - restart zookeeper
+- copy: src=log4j.properties dest=/etc/zookeeper/conf_bigfoot/log4j.properties
+  notify:
+    - restart zookeeper
+- name: Set ID
+  template: src=myid dest=/etc/zookeeper/conf_bigfoot/myid
+  notify:
+    - restart zookeeper
+- template: src=zoo.cfg dest=/etc/zookeeper/conf_bigfoot/zoo.cfg
+  notify:
+    - restart zookeeper
+- name: Set up alternatives to the new configuration
+  alternatives: name=zookeeper-conf path=/etc/zookeeper/conf_bigfoot/
+  notify:
+    - restart zookeeper
+- name: Set up cron job to clean up Zookepeer stale files
+  cron: name="zookeeper cleanup" minute="0" hour="0" job="java -cp /usr/share/java/zookeeper.jar:/usr/share/java/log4j-1.2.jar:/usr/share/java/slf4j-nop.jar:/usr/share/java/slf4j-api.jar:/etc/zookeeper/conf_bigfoot org.apache.zookeeper.server.PurgeTxnLog /var/lib/zookeeper/ /var/lib/zookeeper/ -n 3"
+
