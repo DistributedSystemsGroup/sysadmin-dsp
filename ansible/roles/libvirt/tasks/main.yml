@@ -1,0 +1,10 @@
+---
+- name: update libvirt conf
+  copy: src=libvirtd.conf dest=/etc/libvirt/libvirtd.conf
+  notify:
+    - restart libvirt-bin
+
+- name: update libvirt init conf
+  copy: src=libvirt-bin dest=/etc/default/libvirt-bin
+  notify:
+    - restart libvirt-bin
