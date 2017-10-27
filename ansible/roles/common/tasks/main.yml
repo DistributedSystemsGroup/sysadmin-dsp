@@ -1,0 +1,39 @@
+---
+- name: ensure sudoers file contains NOPASSWD for sudo users
+  lineinfile: dest=/etc/sudoers state=present regexp='^%sudo ALL\=' line='%sudo ALL=(ALL:ALL) NOPASSWD:ALL' validate='visudo -cf %s'
+
+- name: create the deploy group for ansible
+  group: name=deploy state=present
+
+- name: create the deploy user for ansible
+  user: name=deploy shell=/bin/bash group=deploy groups=sudo,adm,plugdev,cdrom,dip append=yes
+
+- name: add public key for deploy access
+  authorized_key: user=deploy key={{ lookup('file', 'deploy.pub') }}
+
+- name: apt-cache-ng proxy
+  copy: src=apt_proxy dest=/etc/apt/apt.conf.d/02proxy 
+
+- name: install NTP daemon
+  apt: name=ntp
+
+- name: copy NTP config file
+  copy: src=ntp.conf dest=/etc/ntp.conf
+  notify:
+    - restart ntp
+
+- name: be sure ntpd is running and enabled
+  service: name=ntp state=started enabled=yes
+
+- name: install ceph mount command
+  apt: name=ceph-fs-common
+
+- name: create ceph conf directory
+  file: path=/etc/ceph state=directory mode=0700
+
+- name: copy ceph key
+  copy: src=/mnt/cephfs/admin/ceph/client.admin.key dest=/etc/ceph/client.admin.key
+
+- name: add cephfs to fstab and mount it
+  mount: name=/mnt/cephfs src=192.168.46.1:/ fstype=ceph opts=name=admin,secretfile=/etc/ceph/client.admin.key,_netdev state=mounted
+

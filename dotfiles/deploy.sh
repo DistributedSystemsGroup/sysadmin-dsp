@@ -2,6 +2,8 @@
 
 BASE=/mnt/cephfs/admin/sysadmin-dsp/dotfiles
 
+ln -s ${BASE}/ansible.cfg ${HOME}/.ansible.cfg
+
 ln -s ${BASE}/hgrc ${HOME}/.hgrc
 ln -s ${BASE}/gitconfig ${HOME}/.gitconfig
 

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  remote_user: venzano
+  become: yes
+  roles:
+    - common
+    - rsyslog
+    - zabbix
+    - telegraf
+  tasks:
+    - name: Clean-up left-over packages
+      apt: autoremove=yes
+

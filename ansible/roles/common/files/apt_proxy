@@ -1,0 +1,4 @@
+Acquire::http::proxy "http://bf5:3142";
+Acquire::http::Proxy {
+    download.oracle.com DIRECT;
+};

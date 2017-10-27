@@ -1,0 +1,4 @@
+---
+- name: restart telegraf
+  command: supervisorctl restart telegraf
+

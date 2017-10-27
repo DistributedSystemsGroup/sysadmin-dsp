@@ -1,0 +1,83 @@
+[spare]
+
+[all]
+m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3
+bfeb ansible_python_interpreter=/usr/bin/python3
+bf1 ansible_python_interpreter=/usr/bin/python3
+bf2 ansible_python_interpreter=/usr/bin/python3
+bf3 ansible_python_interpreter=/usr/bin/python3
+bf4 ansible_python_interpreter=/usr/bin/python3
+bf5
+bf7
+bf8
+bf9
+bf10
+bf12
+bf13
+bf14
+bf15
+bf16
+bf17
+bf18
+bf19
+bf20
+bf21
+bf22
+deepfoot1 ansible_python_interpreter=/usr/bin/python3
+
+[ceph]
+m2 monitor=true ceph_iface=eth0.46
+bf1 osd=true ceph_iface=em1
+bf2 monitor=true osd=true ceph_iface=em1
+bf3 osd=true 
+bf4 osd=true
+bf5 osd=true
+bf7 osd=true
+bf8 osd=true
+bf9 osd=true
+bf10 osd=true
+bf12 osd=true
+bf13 osd=true
+bf14 osd=true
+bf15 osd=true
+bf16 osd=true
+bf17 osd=true
+bf18 osd=true
+bf19 osd=true
+bf20 osd=true
+bf21 osd=true
+bf22 osd=true
+
+[compute]
+bf1 nova_storage=lvm
+bf2 nova_storage=lvm
+bf3 nova_storage=lvm
+bf4 nova_storage=lvm
+
+[zookeeper]
+bf1 zookeeper_id=1
+bf5 zookeeper_id=2
+bf11 zookeeper_id=3
+
+[docker]
+bf5 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.5
+bf7 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.7
+bf8 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.8
+bf9 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.9
+bf10 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.10
+bf12 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.12
+bf13 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.13
+bf14 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.14
+bf15 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.15
+bf16 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.16
+bf17 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.17
+bf18 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.18
+bf19 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.19
+bf20 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.20
+bf21 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.21
+bf22 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.22
+deepfoot1 docker_network_iface=eno2 address_47=192.168.47.50
+
+[nvidia_gpus]
+deepfoot1
+
