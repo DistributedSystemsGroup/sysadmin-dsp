@@ -1,0 +1,1343 @@
+{
+  "title": "Bigfoot server details",
+  "services": {
+    "filter": {
+      "list": [],
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      }
+    }
+  },
+  "rows": [
+    {
+      "title": "CPU and load",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "CPU and load m1",
+          "targets": [
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.load.load.shortterm,'1 min load')"
+            },
+            {
+              "target": "alias(scale(sumSeries(bigfoot-m1_eurecom_fr.cpu-*.cpu-idle),0.125),'Idle CPU')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.processes.fork_rate,'Fork rate')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {
+            "Idle CPU": 2,
+            "Fork rate": 2
+          }
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "CPU and load m2",
+          "targets": [
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.load.load.shortterm,'1 min load')"
+            },
+            {
+              "target": "alias(scale(sumSeries(bigfoot-m2_eurecom_fr.cpu-*.cpu-idle),0.125),'Idle CPU')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.processes.fork_rate,'Fork rate')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {
+            "Idle CPU": 2,
+            "Fork rate": 2
+          }
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "CPU and load eb",
+          "targets": [
+            {
+              "target": "alias(bigfooteb_eurecom_fr.load.load.shortterm,'1 min load')"
+            },
+            {
+              "target": "alias(scale(sumSeries(bigfooteb_eurecom_fr.cpu-*.cpu-idle),0.032),'Idle CPU')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.processes.fork_rate,'Fork rate')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {
+            "Idle CPU": 2,
+            "Fork rate": 2
+          }
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Net m1",
+          "targets": [
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_46.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_46.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth1.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth1.tx,'VMNet TX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_304.rx,'EurecomNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_304.tx,'EurecomNet TX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-lo.rx,'Loopback RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-lo.tx,'Loopback RX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#6ED0E0",
+            "VMNet TX": "#EF843C"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Net m2",
+          "targets": [
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_46.if_octets.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_46.if_octets.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth1.if_octets.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth1.if_octets.tx,'VMNet TX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_304.if_octets.rx,'EurecomNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_304.if_octets.tx,'EurecomNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-lo.if_octets.rx,'Loopback RX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-lo.if_octets.tx,'Loopback TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#6ED0E0",
+            "VMNet TX": "#EF843C",
+            "EurecomNet RX": "#1F78C1",
+            "Loopback RX": "#BA43A9",
+            "Loopback TX": "#705DA0"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Net eb",
+          "targets": [
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-eth0.if_octets.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-eth0.if_octets.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-bond0.if_octets.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-bond0.if_octets.tx,'VMNet TX')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-lo.if_octets.rx,'Loopback RX')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-lo.if_octets.tx,'Loopback TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "bond0 RX": "#E24D42",
+            "bond0 TX": "#1F78C1",
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "",
+      "height": "300px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "aliasSub(bigfoot-m1_eurecom_fr.disk-sda.disk_octets.*,'.*(read|write)','sda \\1')"
+            },
+            {
+              "target": "aliasSub(bigfoot-m1_eurecom_fr.disk-sdb.disk_octets.*,'.*(read|write)','sdb \\1')"
+            },
+            {
+              "target": "aliasSub(bigfoot-m1_eurecom_fr.disk-sdc.disk_octets.*,'.*(read|write)','sdc \\1')"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Disk usage m1"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "aliasSub(bigfoot-m2_eurecom_fr.disk-sda.disk_octets.*,'.*(read|write)','sda \\1')"
+            },
+            {
+              "target": "aliasSub(bigfoot-m2_eurecom_fr.disk-sdb.disk_octets.*,'.*(read|write)','sdb \\1')"
+            },
+            {
+              "target": "aliasSub(bigfoot-m2_eurecom_fr.disk-sdc.disk_octets.*,'.*(read|write)','sdc \\1')"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Disk usage bf2"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sda.disk_octets.*,'.*(read|write)','sda \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdb.disk_octets.*,'.*(read|write)','sdb \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdc.disk_octets.*,'.*(read|write)','sdc \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdd.disk_octets.*,'.*(read|write)','sdd \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sde.disk_octets.*,'.*(read|write)','sde \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdf.disk_octets.*,'.*(read|write)','sdf \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdg.disk_octets.*,'.*(read|write)','sdg \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdh.disk_octets.*,'.*(read|write)','sdh \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdj.disk_octets.*,'.*(read|write)','sdj \\1')"
+            },
+            {
+              "target": "aliasSub(bigfooteb_eurecom_fr.disk-sdk.disk_octets.*,'.*(read|write)','sdk \\1')"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Disk usage eb"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "",
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": 16829554688,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric(bigfoot-m1_eurecom_fr.memory.*)"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Memory m1"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": 16829554688,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric(bigfoot-m2_eurecom_fr.memory.*)"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Memory m2"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": 137438953472,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric(bigfooteb_eurecom_fr.memory.*)"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Memory eb"
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "",
+      "height": "300px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "bigfoot-m1_eurecom_fr.memcached.memcached_ops-hits"
+            },
+            {
+              "target": "bigfoot-m1_eurecom_fr.memcached.memcached_ops-misses"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Memcached m1"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "bigfoot-m2_eurecom_fr.memcached.memcached_ops-hits"
+            },
+            {
+              "target": "bigfoot-m2_eurecom_fr.memcached.memcached_ops-misses"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Memcached m2"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "bigfooteb_eurecom_fr.memcached.memcached_ops-hits"
+            },
+            {
+              "target": "bigfooteb_eurecom_fr.memcached.memcached_ops-misses"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Memcached eb"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "",
+      "height": "300px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "maxSeries(bigfoot-m1_eurecom_fr.sensors-coretemp-isa-0000.*)"
+            },
+            {
+              "target": "maxSeries(bigfoot-m1_eurecom_fr.sensors-coretemp-isa-0001.*)"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Core temperatures m1"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "null",
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "maxSeries(bigfoot-m2_eurecom_fr.sensors-coretemp-isa-0000.*)"
+            },
+            {
+              "target": "maxSeries(bigfoot-m2_eurecom_fr.sensors-coretemp-isa-0001.*)"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Core temperatures m2"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": false,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "maxSeries(bigfooteb_eurecom_fr.sensors-coretemp-isa-0000.*)"
+            },
+            {
+              "target": "maxSeries(bigfooteb_eurecom_fr.sensors-coretemp-isa-0001.*)"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Core temperatures eb"
+        }
+      ],
+      "notice": false
+    }
+  ],
+  "editable": true,
+  "failover": false,
+  "panel_hints": true,
+  "style": "dark",
+  "pulldowns": [
+    {
+      "type": "filtering",
+      "collapse": false,
+      "notice": false,
+      "enable": true
+    },
+    {
+      "type": "annotations",
+      "enable": false,
+      "annotations": []
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "2h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "10d"
+      ],
+      "refresh_intervals": [
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h"
+      ],
+      "now": true
+    }
+  ],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "10d",
+    "load_gist": false,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": false,
+    "hide": false
+  },
+  "refresh": "1m",
+  "tags": [],
+  "timezone": "browser"
+}

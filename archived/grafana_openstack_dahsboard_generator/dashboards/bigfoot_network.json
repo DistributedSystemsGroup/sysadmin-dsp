@@ -1,0 +1,1128 @@
+{
+  "title": "Bigfoot network",
+  "services": {
+    "filter": {
+      "list": [],
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      }
+    }
+  },
+  "rows": [
+    {
+      "title": "",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Network throughput on compute hosts",
+          "targets": [
+            {
+              "target": "alias(sumSeries(bigfoot1_eurecom_fr.interface.if_octets-eth0.rx, bigfoot2_eurecom_fr.interface.if_octets-eth0.rx, bigfoot3_eurecom_fr.interface.if_octets-eth0.rx, bigfoot4_eurecom_fr.interface.if_octets-eth0.rx, bigfoot5_eurecom_fr.interface.if_octets-eth0.rx, bigfoot6_eurecom_fr.interface.if_octets-eth0.rx),'ManageNet RX')",
+              "hide": false
+            },
+            {
+              "target": "alias(sumSeries(bigfoot1_eurecom_fr.interface.if_octets-eth0.tx, bigfoot2_eurecom_fr.interface.if_octets-eth0.tx, bigfoot3_eurecom_fr.interface.if_octets-eth0.tx, bigfoot4_eurecom_fr.interface.if_octets-eth0.tx, bigfoot5_eurecom_fr.interface.if_octets-eth0.tx, bigfoot6_eurecom_fr.interface.if_octets-eth0.tx),'ManageNet TX')",
+              "hide": false
+            },
+            {
+              "target": "alias(sumSeries(bigfoot-m1_eurecom_fr.interface.if_octets-br-ex.rx),'ExternalNet RX')",
+              "hide": false
+            },
+            {
+              "target": "alias(sumSeries(bigfoot-m1_eurecom_fr.interface.if_octets-br-ex.tx),'ExternalNet TX')",
+              "hide": false
+            },
+            {
+              "target": "alias(sumSeries(bigfoot*_eurecom_fr.interface.if_octets-bond0.rx),'VMNet RX')",
+              "hide": false
+            },
+            {
+              "target": "alias(sumSeries(bigfoot*_eurecom_fr.interface.if_octets-bond0.tx),'VMNet TX')",
+              "hide": false
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Average Inter-cluster latency",
+          "targets": [
+            {
+              "target": "alias(bigfoot1_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr,'bf1')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot2_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr, \"bf2\")",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot3_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr, \"bf3\")",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot4_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr, \"bf4\")",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot5_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr, \"bf5\")",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr, \"bf6\")",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr,'m2')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.ping.ping-bigfoot-m1_eurecom_fr,'eb')",
+              "hide": false
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": true,
+            "max": true,
+            "current": true,
+            "total": false,
+            "avg": true
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "m2": "#EAB839",
+            "eb": "#508642",
+            "bf1": "#6ED0E0",
+            "bf2": "#EF843C",
+            "bf3": "#E24D42",
+            "bf4": "#1F78C1",
+            "bf5": "#BA43A9"
+          },
+          "aliasYAxis": {},
+          "leftYAxisLabel": "Latency (ms)"
+        },
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Latency to Google DNS",
+          "targets": [
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.ping.ping-8_8_8_8,'Google ping')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": true,
+            "current": false,
+            "total": false,
+            "avg": true
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "null",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "leftYAxisLabel": "",
+          "rightYAxisLabel": ""
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.exec-ovs.gauge-flows,'m1')"
+            },
+            {
+              "target": "alias(bigfoot1_eurecom_fr.exec-ovs.gauge-flows,'bf1')"
+            },
+            {
+              "target": "alias(bigfoot2_eurecom_fr.exec-ovs.gauge-flows,'bf2')"
+            },
+            {
+              "target": "alias(bigfoot3_eurecom_fr.exec-ovs.gauge-flows,'bf3')"
+            },
+            {
+              "target": "alias(bigfoot4_eurecom_fr.exec-ovs.gauge-flows,'bf4')"
+            },
+            {
+              "target": "alias(bigfoot5_eurecom_fr.exec-ovs.gauge-flows,'bf5')"
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.exec-ovs.gauge-flows,'bf6')"
+            }
+          ],
+          "aliasColors": {
+            "bf1": "#6ED0E0",
+            "bf2": "#EF843C",
+            "bf4": "#1F78C1",
+            "bf3": "#E24D42",
+            "bf5": "#BA43A9",
+            "bf6": "#705DA0"
+          },
+          "aliasYAxis": {},
+          "title": "OpenVSwitch flows"
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 2,
+          "title": "bigfoot1 net",
+          "targets": [
+            {
+              "target": "alias(bigfoot1_eurecom_fr.interface.if_octets-eth0.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot1_eurecom_fr.interface.if_octets-eth0.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot1_eurecom_fr.interface.if_octets-bond0.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot1_eurecom_fr.interface.if_octets-bond0.tx,'VMNet TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 2,
+          "title": "bigfoot2 net",
+          "targets": [
+            {
+              "target": "alias(bigfoot2_eurecom_fr.interface.if_octets-eth0.rx,\"ManageNet RX\")"
+            },
+            {
+              "target": "alias(bigfoot2_eurecom_fr.interface.if_octets-eth0.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot2_eurecom_fr.interface.if_octets-bond0.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot2_eurecom_fr.interface.if_octets-bond0.tx,'VMNet TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 2,
+          "title": "bigfoot3 net",
+          "targets": [
+            {
+              "target": "alias(bigfoot3_eurecom_fr.interface.if_octets-eth0.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot3_eurecom_fr.interface.if_octets-eth0.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot3_eurecom_fr.interface.if_octets-bond0.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot3_eurecom_fr.interface.if_octets-bond0.tx,'VMNet TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "bond0 RX": "#E24D42",
+            "bond0 TX": "#1F78C1",
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 2,
+          "title": "bigfoot4 net",
+          "targets": [
+            {
+              "target": "alias(bigfoot4_eurecom_fr.interface.if_octets-eth0.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot4_eurecom_fr.interface.if_octets-eth0.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot4_eurecom_fr.interface.if_octets-bond0.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot4_eurecom_fr.interface.if_octets-bond0.tx,'VMNet TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 2,
+          "title": "bigfoot5 net",
+          "targets": [
+            {
+              "target": "alias(bigfoot5_eurecom_fr.interface.if_octets-eth0.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot5_eurecom_fr.interface.if_octets-eth0.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot5_eurecom_fr.interface.if_octets-bond0.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot5_eurecom_fr.interface.if_octets-bond0.tx,'VMNet TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 2,
+          "title": "bigfoot6 net",
+          "targets": [
+            {
+              "target": "alias(bigfoot6_eurecom_fr.interface.if_octets-eth0.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.interface.if_octets-eth0.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.interface.if_octets-bond0.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.interface.if_octets-bond0.tx,'VMNet TX')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "VMNet RX": "#E24D42",
+            "VMNet TX": "#1F78C1"
+          },
+          "aliasYAxis": {}
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "",
+      "height": "300px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Network throughput M1",
+          "targets": [
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_46.rx,'ManageNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_46.tx,'ManageNet TX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_304.rx,'Eurecom RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth0_304.tx,'Eurecom TX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth1.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.interface.if_octets-eth1.tx,'VMNet TX')",
+              "hide": false
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {}
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_46.if_octets.rx,'ManageNet RX')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_46.if_octets.tx,'ManageNet TX')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_304.if_octets.rx,'Eurecom RX')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth0_304.if_octets.tx,'Eurecom TX')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth1.if_octets.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.interface-eth1.if_octets.tx,'VMNet TX')"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Network throughtput M2"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-eth0.if_octets.rx,'ManageNet RX')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-eth0.if_octets.tx,'ManageNet TX')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-bond0.if_octets.rx,'VMNet RX')"
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.interface-bond0.if_octets.tx,'VMNet TX')"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Network throughtput EB"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": true,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "alias(derivative(sumSeries(*.exec-ovs.gauge-hits)),'Data plane (hits)')"
+            },
+            {
+              "target": "alias(derivative(sumSeries(*.exec-ovs.gauge-lost)),'Lost packets')"
+            },
+            {
+              "target": "alias(derivative(sumSeries(*.exec-ovs.gauge-misses)),'Control plane (misses)')"
+            }
+          ],
+          "aliasColors": {
+            "Lost packets": "#890F02"
+          },
+          "aliasYAxis": {},
+          "title": "OpenVSwitch pkt processing"
+        }
+      ],
+      "notice": false
+    }
+  ],
+  "editable": true,
+  "failover": false,
+  "panel_hints": true,
+  "style": "dark",
+  "pulldowns": [
+    {
+      "type": "filtering",
+      "collapse": false,
+      "notice": false,
+      "enable": true
+    },
+    {
+      "type": "annotations",
+      "enable": false,
+      "annotations": []
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "2h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "10d"
+      ],
+      "refresh_intervals": [
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h"
+      ],
+      "now": true
+    }
+  ],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "10d",
+    "load_gist": false,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": false,
+    "hide": false
+  },
+  "refresh": "1m",
+  "tags": [],
+  "timezone": "browser"
+}

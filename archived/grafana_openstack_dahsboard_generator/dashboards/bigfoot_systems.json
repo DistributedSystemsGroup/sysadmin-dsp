@@ -1,0 +1,875 @@
+{
+  "title": "Bigfoot systems",
+  "services": {
+    "filter": {
+      "list": [],
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      }
+    }
+  },
+  "rows": [
+    {
+      "title": "CPU",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Load short term",
+          "targets": [
+            {
+              "target": "alias(movingAverage(bigfoot1_eurecom_fr.load.load.shortterm, 5), \"bf1\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot2_eurecom_fr.load.load.shortterm, 5), \"bf2\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot3_eurecom_fr.load.load.shortterm, 5), \"bf3\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot4_eurecom_fr.load.load.shortterm, 5), \"bf4\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot5_eurecom_fr.load.load.shortterm, 5), \"bf5\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot6_eurecom_fr.load.load.shortterm, 5), \"bf6\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot-m1_eurecom_fr.load.load.shortterm, 5), \"m1\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfoot-m2_eurecom_fr.load.load.shortterm, 5), \"m2\")"
+            },
+            {
+              "target": "alias(movingAverage(bigfooteb_eurecom_fr.load.load.shortterm, 5), \"eb\")"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Average idle CPU",
+          "targets": [
+            {
+              "target": "alias(averageSeries(bigfoot1_eurecom_fr.cpu-*.cpu-idle),\"bf1\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot2_eurecom_fr.cpu-*.cpu-idle),\"bf2\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot3_eurecom_fr.cpu-*.cpu-idle),\"bf3\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot4_eurecom_fr.cpu-*.cpu-idle),\"bf4\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot5_eurecom_fr.cpu-*.cpu-idle),\"bf5\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot6_eurecom_fr.cpu-*.cpu-idle),\"bf6\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot-m1_eurecom_fr.cpu-*.cpu-idle),\"m1\")",
+              "hide": false
+            },
+            {
+              "target": "alias(averageSeries(bigfoot-m2_eurecom_fr.cpu-*.cpu-idle),\"m2\")",
+              "hide": false
+            },
+            {
+              "target": "alias(averageSeries(bigfooteb_eurecom_fr.cpu-*.cpu-idle),\"eb\")",
+              "hide": false
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Core temperatures",
+          "targets": [
+            {
+              "target": "alias(averageSeries(bigfoot1_eurecom_fr.sensors-coretemp-isa-*.*),\"bf1\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot2_eurecom_fr.sensors-coretemp-isa-*.*),\"bf2\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot3_eurecom_fr.sensors-coretemp-isa-*.*),\"bf3\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot4_eurecom_fr.sensors-coretemp-isa-*.*),\"bf4\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot5_eurecom_fr.sensors-coretemp-isa-*.*),\"bf5\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot6_eurecom_fr.sensors-coretemp-isa-*.*),\"bf6\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot-m1_eurecom_fr.sensors-coretemp-isa-*.*),\"m1\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfoot-m2_eurecom_fr.sensors-coretemp-isa-*.*),\"m2\")"
+            },
+            {
+              "target": "alias(averageSeries(bigfooteb_eurecom_fr.sensors-coretemp-isa-*.*),'eb')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {}
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "Memory",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Free memory compute",
+          "targets": [
+            {
+              "target": "alias(bigfoot1_eurecom_fr.memory.memory-free, \"bf1\")"
+            },
+            {
+              "target": "alias(bigfoot2_eurecom_fr.memory.memory-free, \"bf2\")"
+            },
+            {
+              "target": "alias(bigfoot3_eurecom_fr.memory.memory-free, \"bf3\")"
+            },
+            {
+              "target": "alias(bigfoot4_eurecom_fr.memory.memory-free, \"bf4\")"
+            },
+            {
+              "target": "alias(bigfoot5_eurecom_fr.memory.memory-free, \"bf5\")"
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.memory.memory-free, \"bf6\")"
+            },
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.memory.memory-free, \"m1\")",
+              "hide": true
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.memory.memory-free, \"m2\")",
+              "hide": true
+            },
+            {
+              "target": "alias(bigfooteb_eurecom_fr.memory.memory-free,'eb')",
+              "hide": false
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "eb": "#508642"
+          },
+          "aliasYAxis": {}
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "graphite",
+          "loadingEditor": false,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "targets": [
+            {
+              "target": "alias(bigfoot-m1_eurecom_fr.memory.memory-free,'m1')"
+            },
+            {
+              "target": "alias(bigfoot-m2_eurecom_fr.memory.memory-free,'m2')"
+            }
+          ],
+          "aliasColors": {
+            "m1": "#BA43A9",
+            "m2": "#705DA0"
+          },
+          "aliasYAxis": {},
+          "title": "Free memory servers"
+        },
+        {
+          "type": "graphite",
+          "span": 4,
+          "title": "Swap activity",
+          "targets": [
+            {
+              "target": "alias(sumSeries(bigfoot-m1_eurecom_fr.swap.swap_io-*),'m1')"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot-m2_eurecom_fr.swap.swap_io-*),'m2')"
+            },
+            {
+              "target": "alias(sumSeries(bigfooteb_eurecom_fr.swap.swap_io-*),'eb')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "m1": "#BA43A9",
+            "m2": "#705DA0",
+            "eb": "#508642"
+          },
+          "aliasYAxis": {}
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    },
+    {
+      "title": "Disks",
+      "panels": [
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Free space for VMs",
+          "targets": [
+            {
+              "target": "alias(minSeries(bigfoot1_eurecom_fr.exec-kvm*.bytes-free),'bf1')"
+            },
+            {
+              "target": "alias(minSeries(bigfoot2_eurecom_fr.exec-kvm*.bytes-free),'bf2')",
+              "hide": false
+            },
+            {
+              "target": "alias(minSeries(bigfoot3_eurecom_fr.exec-kvm*.bytes-free),'bf3')",
+              "hide": false
+            },
+            {
+              "target": "alias(minSeries(bigfoot4_eurecom_fr.exec-kvm*.bytes-free),'bf4')",
+              "hide": false
+            },
+            {
+              "target": "alias(minSeries(bigfoot5_eurecom_fr.exec-kvm*.bytes-free),'bf5')",
+              "hide": false
+            },
+            {
+              "target": "alias(bigfoot6_eurecom_fr.df.df-var.free, \"bf6\")",
+              "hide": false
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {}
+        },
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Free space servers",
+          "targets": [
+            {
+              "target": "alias(minSeries(bigfoot-m1_eurecom_fr.df.df-*.free),'m1')"
+            },
+            {
+              "target": "alias(minSeries(bigfoot-m2_eurecom_fr.df-*.df_complex-free),'m2')"
+            },
+            {
+              "target": "alias(minSeries(bigfooteb_eurecom_fr.df-root.df_complex-free, bigfooteb_eurecom_fr.df-var.df_complex-free, bigfooteb_eurecom_fr.df-srv-*.df_complex-free),'eb')"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "bytes"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {
+            "eb": "#508642",
+            "m2": "#705DA0",
+            "m1": "#BA43A9"
+          },
+          "aliasYAxis": {
+            "eb": 2
+          }
+        },
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "VM disks throughput",
+          "targets": [
+            {
+              "target": "alias(sumSeries(bigfoot1_eurecom_fr.disk-sdc.disk_octets.*, bigfoot1_eurecom_fr.disk-sdd.disk_octets.*, bigfoot1_eurecom_fr.disk-sde.disk_octets.*, bigfoot1_eurecom_fr.disk-sdf.disk_octets.*, bigfoot1_eurecom_fr.disk-sdg.disk_octets.*, bigfoot1_eurecom_fr.disk-sdh.disk_octets.*, bigfoot1_eurecom_fr.disk-sdi.disk_octets.*),\"bf1\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot2_eurecom_fr.disk-sdc.disk_octets.*, bigfoot2_eurecom_fr.disk-sdd.disk_octets.*, bigfoot2_eurecom_fr.disk-sde.disk_octets.*, bigfoot2_eurecom_fr.disk-sdf.disk_octets.*, bigfoot2_eurecom_fr.disk-sdg.disk_octets.*, bigfoot2_eurecom_fr.disk-sdh.disk_octets.*, bigfoot2_eurecom_fr.disk-sdi.disk_octets.*),\"bf2\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot3_eurecom_fr.disk-sdc.disk_octets.*, bigfoot3_eurecom_fr.disk-sdd.disk_octets.*, bigfoot3_eurecom_fr.disk-sde.disk_octets.*, bigfoot3_eurecom_fr.disk-sdf.disk_octets.*, bigfoot3_eurecom_fr.disk-sdg.disk_octets.*, bigfoot3_eurecom_fr.disk-sdh.disk_octets.*, bigfoot3_eurecom_fr.disk-sdi.disk_octets.*),\"bf3\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot4_eurecom_fr.disk-sdc.disk_octets.*, bigfoot4_eurecom_fr.disk-sdd.disk_octets.*, bigfoot4_eurecom_fr.disk-sde.disk_octets.*, bigfoot4_eurecom_fr.disk-sdf.disk_octets.*, bigfoot4_eurecom_fr.disk-sdg.disk_octets.*, bigfoot4_eurecom_fr.disk-sdh.disk_octets.*, bigfoot4_eurecom_fr.disk-sdi.disk_octets.*),\"bf4\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot5_eurecom_fr.disk-sdc.disk_octets.*, bigfoot5_eurecom_fr.disk-sdd.disk_octets.*, bigfoot5_eurecom_fr.disk-sde.disk_octets.*, bigfoot5_eurecom_fr.disk-sdf.disk_octets.*, bigfoot5_eurecom_fr.disk-sdg.disk_octets.*, bigfoot5_eurecom_fr.disk-sdh.disk_octets.*, bigfoot5_eurecom_fr.disk-sdi.disk_octets.*),\"bf5\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot6_eurecom_fr.disk-sdc.disk_octets.*, bigfoot6_eurecom_fr.disk-sdd.disk_octets.*, bigfoot6_eurecom_fr.disk-sde.disk_octets.*, bigfoot6_eurecom_fr.disk-sdf.disk_octets.*, bigfoot6_eurecom_fr.disk-sdg.disk_octets.*, bigfoot6_eurecom_fr.disk-sdh.disk_octets.*, bigfoot6_eurecom_fr.disk-sdi.disk_octets.*),\"bf6\")"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "leftYAxisLabel": "per second"
+        },
+        {
+          "type": "graphite",
+          "span": 3,
+          "title": "Non-VM disks throughput",
+          "targets": [
+            {
+              "target": "alias(sumSeries(bigfoot1_eurecom_fr.disk-sda.disk_octets.*, bigfoot1_eurecom_fr.disk-sdb.disk_octets.*),\"bf1\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot2_eurecom_fr.disk-sda.disk_octets.*, bigfoot2_eurecom_fr.disk-sdb.disk_octets.*),\"bf2\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot3_eurecom_fr.disk-sda.disk_octets.*, bigfoot3_eurecom_fr.disk-sdb.disk_octets.*),\"bf3\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot4_eurecom_fr.disk-sda.disk_octets.*, bigfoot4_eurecom_fr.disk-sdb.disk_octets.*),\"bf4\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot5_eurecom_fr.disk-sda.disk_octets.*, bigfoot5_eurecom_fr.disk-sdb.disk_octets.*),\"bf5\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot6_eurecom_fr.disk-sda.disk_octets.*, bigfoot6_eurecom_fr.disk-sdb.disk_octets.*),\"bf6\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot-m1_eurecom_fr.disk-sda.disk_octets.*, bigfoot-m1_eurecom_fr.disk-sdb.disk_octets.*, bigfoot-m1_eurecom_fr.disk-sdc.disk_octets.*),\"m1\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfoot-m2_eurecom_fr.disk-sda.disk_octets.*, bigfoot-m2_eurecom_fr.disk-sdb.disk_octets.*, bigfoot-m2_eurecom_fr.disk-sdc.disk_octets.*),\"m2\")"
+            },
+            {
+              "target": "alias(sumSeries(bigfooteb_eurecom_fr.disk-sda.disk_octets.*),\"eb\")"
+            }
+          ],
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": 0,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "annotate": {
+            "enable": false
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "percentage": false,
+          "zerofill": true,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "leftYAxisLabel": "per second"
+        }
+      ],
+      "height": "300px",
+      "collapse": false,
+      "collapsable": true,
+      "editable": true,
+      "notice": false
+    }
+  ],
+  "editable": true,
+  "failover": false,
+  "panel_hints": true,
+  "style": "dark",
+  "pulldowns": [
+    {
+      "type": "filtering",
+      "collapse": false,
+      "notice": false,
+      "enable": true
+    },
+    {
+      "type": "annotations",
+      "enable": false,
+      "annotations": []
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "2h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ],
+      "refresh_intervals": [
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "now": true
+    }
+  ],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": false,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": false,
+    "hide": false
+  },
+  "refresh": "1m",
+  "tags": [],
+  "timezone": "browser"
+}

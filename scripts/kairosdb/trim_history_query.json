@@ -1,0 +1,116 @@
+{
+   "start_absolute": 0,
+   "end_relative": {
+       "value": "15",
+       "unit": "days"
+   },
+   "time_zone": "UTC",
+   "metrics": [
+       {
+           "name": "metrical.message_in_rate"
+       },
+       {
+           "name": "metrical.message_out_rate"
+       },
+       {
+           "name": "metrical.kafka_lag"
+       },
+       {
+           "name": "kairosdb.datastore.cassandra.key_query_time"
+       },
+       {
+           "name": "kairosdb.datastore.cassandra.row_key_count"
+       },
+       {
+           "name": "kairosdb.datastore.queries_waiting"
+       },
+       {
+           "name": "kairosdb.datastore.query_collisions"
+       },
+       {
+           "name": "kairosdb.datastore.query_row_count"
+       },
+       {
+           "name": "kairosdb.datastore.query_sample_size"
+       },
+       {
+           "name": "kairosdb.datastore.query_time"
+       },
+       {
+           "name": "kairosdb.datastore.write_size"
+       },
+       {
+           "name": "kairosdb.http.ingest_count"
+       },
+       {
+           "name": "kairosdb.http.ingest_time"
+       },
+       {
+           "name": "kairosdb.http.query_time"
+       },
+       {
+           "name": "kairosdb.http.request_time"
+       },
+       {
+           "name": "kairosdb.ingest_executor.write_time_micro.avg"
+       },
+       {
+           "name": "kairosdb.ingest_executor.write_time_micro.count"
+       },
+       {
+           "name": "kairosdb.ingest_executor.write_time_micro.max"
+       },
+       {
+           "name": "kairosdb.ingest_executor.write_time_micro.min"
+       },
+       {
+           "name": "kairosdb.ingest_executor.write_time_micro.sum"
+       },
+       {
+           "name": "kairosdb.jvm.free_memory"
+       },
+       {
+           "name": "kairosdb.jvm.max_memory"
+       },
+       {
+           "name": "kairosdb.jvm.thread_count"
+       },
+       {
+           "name": "kairosdb.jvm.total_memory"
+       },
+       {
+           "name": "kairosdb.metric_counters"
+       },
+       {
+           "name": "kairosdb.protocol.http_request_count"
+       },
+       {
+           "name": "kairosdb.protocol.telnet_request_count"
+       },
+       {
+           "name": "kairosdb.queue.batch_stats.avg"
+       },
+       {
+           "name": "kairosdb.queue.batch_stats.count"
+       },
+       {
+           "name": "kairosdb.queue.batch_stats.max"
+       },
+       {
+           "name": "kairosdb.queue.batch_stats.min"
+       },
+       {
+           "name": "kairosdb.queue.batch_stats.sum"
+       },
+       {
+           "name": "kairosdb.queue.file_queue.size"
+       },
+       {
+           "name": "kairosdb.queue.process_count"
+       },
+       {
+           "name": "kairosdb.queue.read_from_file"
+       }
+   ]
+}
+
