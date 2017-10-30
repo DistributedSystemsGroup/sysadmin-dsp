@@ -56,27 +56,28 @@ bf4 nova_storage=lvm
 
 [zookeeper]
 bf1 zookeeper_id=1
-bf5 zookeeper_id=2
+bf5 zookeeper_id=
 bf11 zookeeper_id=3
 
 [docker]
-bf5 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.5
-bf7 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.7
-bf8 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.8
-bf9 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.9
-bf10 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.10
-bf12 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.12
-bf13 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.13
-bf14 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.14
-bf15 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.15
-bf16 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.16
-bf17 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.17
-bf18 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.18
-bf19 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.19
-bf20 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.20
-bf21 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.21
-bf22 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.22
-deepfoot1 docker_network_iface=eno2 address_47=192.168.47.50
+bf5 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.5 docker_listen_hostname=bf5.containers.bigfoot.eurecom.fr
+bf7 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.7 docker_listen_hostname=bf7.containers.bigfoot.eurecom.fr
+bf8 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.8 docker_listen_hostname=bf8.containers.bigfoot.eurecom.fr
+bf9 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.9 docker_listen_hostname=bf9.containers.bigfoot.eurecom.fr
+bf10 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.10 docker_listen_hostname=b10.containers.bigfoot.eurecom.fr
+bf11 docker_listen_hostname=bf11.bigfoot.eurecom.fr
+bf12 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.12 docker_listen_hostname=bf12.containers.bigfoot.eurecom.fr
+bf13 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.13 docker_listen_hostname=bf13.containers.bigfoot.eurecom.fr
+bf14 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.14 docker_listen_hostname=bf14.containers.bigfoot.eurecom.fr
+bf15 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.15 docker_listen_hostname=bf15.containers.bigfoot.eurecom.fr
+bf16 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.16 docker_listen_hostname=bf16.containers.bigfoot.eurecom.fr
+bf17 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.17 docker_listen_hostname=bf17.containers.bigfoot.eurecom.fr
+bf18 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.18 docker_listen_hostname=bf18.containers.bigfoot.eurecom.fr
+bf19 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.19 docker_listen_hostname=bf19.containers.bigfoot.eurecom.fr
+bf20 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.20 docker_listen_hostname=bf20.containers.bigfoot.eurecom.fr
+bf21 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.21 docker_listen_hostname=bf21.containers.bigfoot.eurecom.fr
+bf22 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.22 docker_listen_hostname=bf22.containers.bigfoot.eurecom.fr
+deepfoot1 docker_network_iface=eno2 address_47=192.168.47.50 docker_listen_hostname=deepfoot1.containers.bigfoot.eurecom.fr
 
 [nvidia_gpus]
 deepfoot1

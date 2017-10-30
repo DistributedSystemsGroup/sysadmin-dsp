@@ -1,0 +1,26 @@
+{
+  "dns": ["192.168.46.1"],
+  "dns-search": ["bigfoot.eurecom.fr"],
+{% if docker_network_iface is defined %}
+  "cluster-store": "zk://bf1:2181,bf5:2181,bf11:2181/docker",
+  "cluster-advertise": "{{ docker_network_iface }}:2375",
+{% endif %}
+{% if docker_device is defined %}
+  "data-root": "/mnt/docker",
+{% endif %}
+  "tlsverify": true,
+  "tlscacert": "/mnt/cephfs/admin/cert-authority/demoCA/cacert.pem",
+  "tlscert": "/mnt/cephfs/admin/cert-authority/{{ ansible_hostname }}/cert.pem",
+  "tlskey": "/mnt/cephfs/admin/cert-authority/{{ ansible_hostname }}/key.pem",
+{% if "nvidia_gpus" in group_names %}
+  "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+  },
+  "default-runtime": "nvidia"
+{% endif %}
+  "hosts": ["tcp://{{ docker_listen_hostname }}:2375", "unix:///var/run/docker.sock"]
+}
+

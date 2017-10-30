@@ -1,0 +1,53 @@
+---
+- lvg: vg=docker pvs=/dev/{{ docker_device }} state=present
+  when: docker_device is defined
+- lvol: vg=docker lv=lvol0 size=100%VG state=present
+  when: docker_device is defined
+- filesystem: fstype=ext4 dev=/dev/mapper/docker-lvol0
+  when: docker_device is defined
+- mount: state=mounted name=/mnt/docker src=/dev/mapper/docker-lvol0 fstype=ext4
+  when: docker_device is defined
+- name: Install Docker Registry certificate
+  file: state=directory path=/etc/docker/certs.d/docker-registry:5000
+- file: state=link src=/mnt/cephfs/docker-volumes/docker-registry-certs/docker-registry.crt path=/etc/docker/certs.d/docker-registry:5000/ca.crt
+- name: Bring up the network interface for Docker traffic
+  command: ifup {{ docker_network_iface }}
+  when: docker_network_iface is defined
+- name: Copy configuration file
+  template: src=docker.conf dest=/etc/default/docker
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "12"
+  notify:
+    - restart docker
+- name: Remove old configuration file
+  file: state=absent path=/etc/default/docker
+- name: Copy configuration file
+  template: src=daemon.json dest=/etc/docker/
+  notify:
+    - restart docker
+- name: Install Docker dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - ca-certificates
+    - curl
+    - software-properties-common
+- name: Make sure correct kernel is installed
+  apt: name=linux-image-generic-lts-xenial state=present
+- name: Install APT key
+  apt_key: state=present data="{{ lookup('file', 'apt_repo.key') }}"
+- name: Remove old APT repository
+  apt_repository: repo='deb http://apt.dockerproject.org/repo ubuntu-trusty main' state=absent update_cache=no
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
+- name: Install APT repository
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu trusty stable' state=present update_cache=yes filename=docker
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
+- name: Remove old APT repository
+  apt_repository: repo='deb http://apt.dockerproject.org/repo ubuntu-xenial main' state=absent update_cache=no
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+- name: Install APT repository
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' state=present update_cache=yes filename=docker
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+- name: Remove old Docker package
+  apt: name=docker-engine state=absent
+- name: Install Docker packages
+  apt: name=docker-ce=17.09* state=present
+
