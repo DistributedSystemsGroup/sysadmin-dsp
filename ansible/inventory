@@ -85,3 +85,9 @@ deepfoot1
 [grafana]
 m2
 
+[cassandra]
+bf5 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/cassandra-log/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
+bf11 cassandra_data_mountpoint=/srv/cassandra cassandra_commitlog=/var/lib/cassandra/commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
+bf12 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/hdfs/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
+bf13 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/hdfs/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
+
