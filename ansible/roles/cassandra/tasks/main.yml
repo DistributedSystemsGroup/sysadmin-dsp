@@ -1,0 +1,16 @@
+---
+- name: Set up volume group
+  lvg: vg=cassandra pvs={{ cassandra_data_devices }} state=present
+- name: Create logical volume
+  lvol: vg=cassandra lv=lvol0 size=100%VG state=present
+- name: Format filesystem
+  filesystem: fstype=xfs dev=/dev/mapper/cassandra-lvol0
+- name: Mount Cassandra volume
+  mount: state=mounted name={{ cassandra_data_mountpoint }} src=/dev/mapper/cassandra-lvol0 fstype=xfs opts=defaults,noatime
+- name: Install cassandra package
+  apt: name=cassandra state=present
+- name: Set JVM options for Cassandra
+  copy: src=jvm.options dest=/etc/cassandra/jvm.options
+- name: Copy configuration file
+  template: src=cassandra.yaml dest=/etc/cassandra/cassandra.yaml
+
