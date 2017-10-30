@@ -82,3 +82,6 @@ deepfoot1 docker_network_iface=eno2 address_47=192.168.47.50 docker_listen_hostn
 [nvidia_gpus]
 deepfoot1
 
+[grafana]
+m2
+

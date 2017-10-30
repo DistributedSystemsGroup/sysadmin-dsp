@@ -1,0 +1,14 @@
+---
+- name: Add APT key for Grafana repository
+  apt_key: state=present url=https://packagecloud.io/gpg.key
+- name: Add APT repository
+  apt_repository: repo='deb http://packagecloud.io/grafana/stable/debian/ jessie main' state=present update_cache=yes
+- name: Install grafana package
+  apt: name=grafana state=present
+- name: Install LDAP configuration
+  template: src=ldap.toml dest=/etc/grafana/ldap.toml mode=640 owner=root group=grafana
+  notify: restart grafana
+- name: Install Grafana configuration
+  template: src=grafana.ini dest=/etc/grafana/grafana.ini mode=640 owner=root group=grafana
+  notify: restart grafana
+
