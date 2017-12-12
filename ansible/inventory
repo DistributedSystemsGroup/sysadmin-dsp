@@ -56,7 +56,8 @@ bf4 nova_storage=lvm
 
 [zookeeper]
 bf1 zookeeper_id=1
-bf5 zookeeper_id=
+m2 zookeeper_id=4
+bf5 zookeeper_id=2
 bf11 zookeeper_id=3
 
 [docker]
@@ -90,4 +91,17 @@ bf5 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/cassandra-
 bf11 cassandra_data_mountpoint=/srv/cassandra cassandra_commitlog=/var/lib/cassandra/commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
 bf12 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/hdfs/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
 bf13 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/hdfs/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
+
+[datanode]
+bf12
+bf13
+bf14
+bf15
+bf16
+bf17
+bf18
+bf19
+bf20
+bf21
+bf22
 

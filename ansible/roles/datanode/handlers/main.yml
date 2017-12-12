@@ -1,0 +1,5 @@
+---
+- name: restart datanode
+  shell: supervisorctl datanode restart
+- name: update supervisord
+  shell: supervisorctl update

@@ -1,0 +1,29 @@
+---
+- name: WebUpd8 repository key
+  apt_key: id=7B2C3B0889BF5709A105D03AC2518248EEA14886 state=present keyserver=keyserver.ubuntu.com
+- name: Oracle Java repository
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' state=present update_cache=yes filename=webupd8team-java-trusty
+- name: Pre-accept Oracle license
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+- name: Install Oracle Java packages
+  apt: name={{ item }} state=present
+  with_items:
+    - oracle-java8-installer
+    - oracle-java8-set-default
+- name: Download Hadoop distribution
+  get_url: url=http://mirrors.ircam.fr/pub/apache/hadoop/common/hadoop-2.6.5/hadoop-2.6.5.tar.gz dest=/opt/hadoop-2.6.5.tar.gz
+- name: Untar
+  unarchive: src=/opt/hadoop-2.6.5.tar.gz dest=/opt copy=no creates=/opt/hadoop-2.6.5/README.txt
+- name: copy core configuration
+  copy: src=core-site.xml dest=/opt/hadoop-2.6.5/etc/hadoop/core-site.xml
+  notify: restart datanode
+- name: copy hdfs configuration
+  copy: src=hdfs-site.xml dest=/opt/hadoop-2.6.5/etc/hadoop/hdfs-site.xml
+  notify: restart datanode
+- name: copy env configuration
+  copy: src=hadoop-env.sh dest=/opt/hadoop-2.6.5/etc/hadoop/hadoop-env.sh
+  notify: restart datanode
+- name: copy supervisord configuration
+  copy: src=supervisord.conf dest=/etc/supervisor/conf.d/datanode.conf
+  notify: update supervisord
+

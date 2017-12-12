@@ -1,4 +1,19 @@
 ---
+- name: WebUpd8 repository key
+  apt_key: id=7B2C3B0889BF5709A105D03AC2518248EEA14886 state=present keyserver=keyserver.ubuntu.com
+- name: Oracle Java repository
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' state=present update_cache=no filename=webupd8team-java-trusty
+- name: Cassandra repository key
+  apt_key: url=http://www.apache.org/dist/cassandra/KEYS state=present
+- name: Cassandra repository
+  apt_repository: repo='deb http://www.apache.org/dist/cassandra/debian 311x main' state=present update_cache=yes filename=cassandra
+- name: Pre-accept Oracle license
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+- name: Install Oracle Java packages
+  apt: name={{ item }} state=present
+  with_items:
+    - oracle-java8-installer
+    - oracle-java8-set-default
 - name: Set up volume group
   lvg: vg=cassandra pvs={{ cassandra_data_devices }} state=present
 - name: Create logical volume
@@ -11,6 +26,11 @@
   apt: name=cassandra state=present
 - name: Set JVM options for Cassandra
   copy: src=jvm.options dest=/etc/cassandra/jvm.options
+  notify: restart cassandra
 - name: Copy configuration file
   template: src=cassandra.yaml dest=/etc/cassandra/cassandra.yaml
+  notify: restart cassandra
+- name: Copy environment file
+  copy: src=cassandra-env.sh dest=/etc/cassandra/cassandra-env.sh
+  notify: restart cassandra
 

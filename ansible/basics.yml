@@ -5,8 +5,8 @@
   roles:
     - common
     - rsyslog
-    - zabbix
     - telegraf
+    - zabbix
   tasks:
     - name: Clean-up left-over packages
       apt: autoremove=yes

@@ -27,13 +27,20 @@
 
 - name: install ceph mount command
   apt: name=ceph-fs-common
+- group: name=ceph state=present system=yes
 
 - name: create ceph conf directory
-  file: path=/etc/ceph state=directory mode=0700
+  file: path=/etc/ceph state=directory mode=0770 group=ceph owner=root
 
 - name: copy ceph key
   copy: src=/mnt/cephfs/admin/ceph/client.admin.key dest=/etc/ceph/client.admin.key
 
 - name: add cephfs to fstab and mount it
   mount: name=/mnt/cephfs src=192.168.46.1:/ fstype=ceph opts=name=admin,secretfile=/etc/ceph/client.admin.key,_netdev state=mounted
+
+- name: install an MTA
+  apt: name=msmtp
+- apt: name=msmtp-mta
+- copy: src=msmtprc dest=/etc/msmtprc
+- copy: src=msmtprc-aliases dest=/etc/aliases
 
