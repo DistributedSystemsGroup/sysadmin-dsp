@@ -1,0 +1,11 @@
+{
+   "start_absolute": 0,
+   "end_absolute": 0,
+   "time_zone": "UTC",
+   "metrics": [
+       {
+           "name": "swap"
+       }
+   ]
+}
+

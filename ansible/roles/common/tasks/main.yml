@@ -13,6 +13,7 @@
 
 - name: apt-cache-ng proxy
   copy: src=apt_proxy dest=/etc/apt/apt.conf.d/02proxy 
+  when: ansible_hostname != "bf5"
 
 - name: install NTP daemon
   apt: name=ntp
@@ -43,4 +44,4 @@
 - apt: name=msmtp-mta
 - copy: src=msmtprc dest=/etc/msmtprc
 - copy: src=msmtprc-aliases dest=/etc/aliases
-
+  

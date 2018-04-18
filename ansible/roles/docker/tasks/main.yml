@@ -15,11 +15,9 @@
   when: docker_network_iface is defined
 - name: Copy configuration file
   template: src=docker.conf dest=/etc/default/docker
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "12"
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
   notify:
     - restart docker
-- name: Remove old configuration file
-  file: state=absent path=/etc/default/docker
 - name: Copy configuration file
   template: src=daemon.json dest=/etc/docker/
   notify:
@@ -30,8 +28,6 @@
     - ca-certificates
     - curl
     - software-properties-common
-- name: Make sure correct kernel is installed
-  apt: name=linux-image-generic-lts-xenial state=present
 - name: Install APT key
   apt_key: state=present data="{{ lookup('file', 'apt_repo.key') }}"
 - name: Remove old APT repository
@@ -50,4 +46,19 @@
   apt: name=docker-engine state=absent
 - name: Install Docker packages
   apt: name=docker-ce=17.09* state=present
+- name: Install Flannel
+  get_url:
+    url: https://github.com/coreos/flannel/releases/download/v0.10.0/flanneld-amd64
+    dest: /opt/flanneld-amd64
+    mode: 0755
+  notify:
+    - restart flannel
+- name: setup flannel startup via supervisord
+  copy: src=flannel.conf dest=/etc/supervisor/conf.d/flannel.conf
+  notify:
+    - restart flannel-conf
+- name: install docker-hostdns
+  pip: name=docker-hostdns
+- name: setup docker-hostdns startup via supervisord
+  copy: src=docker-hostdns.conf dest=/etc/supervisor/conf.d/docker-hostdns.conf
 

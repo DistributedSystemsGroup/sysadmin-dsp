@@ -1,7 +1,7 @@
 {
    "start_absolute": 0,
    "end_relative": {
-       "value": "15",
+       "value": "1",
        "unit": "days"
    },
    "time_zone": "UTC",

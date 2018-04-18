@@ -1,0 +1,30 @@
+---
+- name: install logcheck
+  apt: name={{ item }}
+  with_items:
+    - logcheck
+    - logcheck-database
+- name: copy custom rules
+  copy: src=logcheck-rules dest=/etc/logcheck/ignore.d.server/local
+
+- name: copy configuration file
+  copy: src=logcheck.conf dest=/etc/logcheck/logcheck.conf
+
+- name: generate list of log files to check
+  template: src=logcheck.logfiles dest=/etc/logcheck/logcheck.logfiles
+
+- name: remove wrong alias
+  lineinfile:
+    path: /etc/aliases
+    state: absent
+    line: 'logcheck: root'
+
+- name: add right alias
+  lineinfile:
+    path: /etc/aliases
+    state: present
+    line: 'logcheck: root@bigfoot.eurecom.fr'
+
+- name: add logcheck user to system groups
+  user: name=logcheck append=yes groups=ceph,zabbix
+

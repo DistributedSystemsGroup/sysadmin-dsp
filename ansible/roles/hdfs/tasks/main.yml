@@ -24,6 +24,6 @@
   copy: src=hadoop-env.sh dest=/opt/hadoop-2.6.5/etc/hadoop/hadoop-env.sh
   notify: restart datanode
 - name: copy supervisord configuration
-  copy: src=supervisord.conf dest=/etc/supervisor/conf.d/datanode.conf
+  template: src=supervisord.conf dest=/etc/supervisor/conf.d/datanode.conf
   notify: update supervisord
 

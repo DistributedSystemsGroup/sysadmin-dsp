@@ -1,13 +1,13 @@
 [spare]
 
 [all]
-m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3
-bfeb ansible_python_interpreter=/usr/bin/python3
-bf1 ansible_python_interpreter=/usr/bin/python3
-bf2 ansible_python_interpreter=/usr/bin/python3
-bf3 ansible_python_interpreter=/usr/bin/python3
-bf4 ansible_python_interpreter=/usr/bin/python3
-bf5
+m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3 swap=false
+bfeb ansible_python_interpreter=/usr/bin/python3 swap=true
+bf1 ansible_python_interpreter=/usr/bin/python3 swap=false
+bf2 ansible_python_interpreter=/usr/bin/python3 swap=false
+bf3 ansible_python_interpreter=/usr/bin/python3 swap=false
+bf4 ansible_python_interpreter=/usr/bin/python3 swap=false
+bf5 ansible_python_interpreter=/usr/bin/python3 swap=true
 bf7
 bf8
 bf9
@@ -42,11 +42,6 @@ bf14 osd=true
 bf15 osd=true
 bf16 osd=true
 bf17 osd=true
-bf18 osd=true
-bf19 osd=true
-bf20 osd=true
-bf21 osd=true
-bf22 osd=true
 
 [compute]
 bf1 nova_storage=lvm
@@ -57,16 +52,13 @@ bf4 nova_storage=lvm
 [zookeeper]
 bf1 zookeeper_id=1
 m2 zookeeper_id=4
-bf5 zookeeper_id=2
 bf11 zookeeper_id=3
 
 [docker]
-bf5 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.5 docker_listen_hostname=bf5.containers.bigfoot.eurecom.fr
 bf7 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.7 docker_listen_hostname=bf7.containers.bigfoot.eurecom.fr
 bf8 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.8 docker_listen_hostname=bf8.containers.bigfoot.eurecom.fr
 bf9 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.9 docker_listen_hostname=bf9.containers.bigfoot.eurecom.fr
-bf10 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.10 docker_listen_hostname=b10.containers.bigfoot.eurecom.fr
-bf11 docker_listen_hostname=bf11.bigfoot.eurecom.fr
+bf10 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.10 docker_listen_hostname=bf10.containers.bigfoot.eurecom.fr
 bf12 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.12 docker_listen_hostname=bf12.containers.bigfoot.eurecom.fr
 bf13 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.13 docker_listen_hostname=bf13.containers.bigfoot.eurecom.fr
 bf14 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.14 docker_listen_hostname=bf14.containers.bigfoot.eurecom.fr
@@ -104,4 +96,7 @@ bf19
 bf20
 bf21
 bf22
+
+[namenode]
+bf12
 

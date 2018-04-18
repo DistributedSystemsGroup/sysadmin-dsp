@@ -3,7 +3,7 @@
 cd /mnt/cephfs/zoe-workspaces/prod
 
 for d in *; do
-	chmod 755 $d
+	chmod 700 $d
 done
 
 IFS=$'\n'

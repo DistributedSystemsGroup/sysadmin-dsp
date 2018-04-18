@@ -2,7 +2,7 @@
 
 # This script is run by GitLab CI in a container
 
-HOSTS="bf5 bf7 bf8 bf9 bf10 bf12 bf13 bf14 bf15 bf16 bf17 bf18 bf19 bf20 bf21 bf22 deepfoot1"
+HOSTS="bf7 bf8 bf9 bf10 bf12 bf13 bf14 bf15 bf16 bf17 bf18 bf19 bf20 bf21 bf22 deepfoot1"
 DOCKER_PORT=2375
 
 DOCKER_TLS_VERIFY=1

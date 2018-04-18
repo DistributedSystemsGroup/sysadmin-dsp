@@ -1,3 +1,8 @@
 ---
 - name: restart docker
   service: name=docker state=restarted
+- name: restart flannel
+  shell: supervisorctl restart flannel
+- name: restart flannel-conf
+  shell: supervisorctl update
+

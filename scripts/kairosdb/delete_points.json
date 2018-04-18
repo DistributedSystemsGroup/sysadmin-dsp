@@ -1,0 +1,19 @@
+{
+  "metrics": [
+    {
+      "tags": {
+        "field": [
+          "in",
+          "out",
+          "used_percent"
+        ]
+      },
+      "name": "swap"
+    }
+  ],
+  "plugins": [],
+  "cache_time": 0,
+  "start_absolute": 1514761200000,
+  "end_absolute": 1522274400000
+}
+
