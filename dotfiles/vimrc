@@ -58,7 +58,7 @@ autocmd FileType python setlocal nosmartindent smarttab expandtab shiftwidth=4 t
 autocmd FileType makefile setlocal noexpandtab
 autocmd FileType tex setlocal spell spelllang=en wrap iskeyword+=:
 autocmd BufRead,BufNewFile *.txt setlocal wrap spell spelllang=en,it
-autocmd BufRead,BufNewFile *.mdown,*.md,*.mkd setlocal wrap filetype=markdown spelllang=en,it spell shiftwidth=4 tabstop=4
+autocmd BufRead,BufNewFile *.mdown,*.md,*.mkd setlocal wrap filetype=markdown spelllang=en spell shiftwidth=4 tabstop=4
 autocmd BufRead,BufNewFile *.mdown,*.md,*.mkd SoftPencil
 
 autocmd BufReadPost * :DetectIndent
@@ -128,7 +128,7 @@ endfunction
 autocmd BufRead mutt* silent call Mail_Erase_Sig()
 map ,re 1G/^Subject:<CR>:s/\(Re: \)\+/Re: /e<CR>
 autocmd BufRead mutt* :normal ,re
-autocmd BufRead mutt* set spell spelllang=it,en
+autocmd BufRead mutt* set spell spelllang=en
 autocmd BufRead mutt* /^$/
 
 let g:vim_markdown_folding_disabled = 1
