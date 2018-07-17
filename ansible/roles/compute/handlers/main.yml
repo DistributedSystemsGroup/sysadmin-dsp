@@ -3,3 +3,5 @@
   service: name=neutron-linuxbridge-agent state=restarted
 - name: restart nova-compute
   service: name=nova-compute state=restarted
+- name: restart ceilometer-agent-compute
+  service: name=ceilometer-agent-compute state=restarted

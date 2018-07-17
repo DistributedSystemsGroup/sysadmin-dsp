@@ -2,8 +2,8 @@
 - name: Install Ubuntu cloud keys package
   apt: name=ubuntu-cloud-keyring
 
-- name: Add Ocata Ubuntu cloud repository
-  apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/ocata main' state=present update_cache=yes
+- name: Add Pike Ubuntu cloud repository
+  apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/pike main' filename=pike state=present update_cache=yes
 
 - name: install nova-compute package
   apt: name={{ item }}
@@ -43,3 +43,19 @@
 - name: delete Ubuntu Nova package sqlite database
   file: path=/var/lib/nova/nova.sqlite state=absent
 
+- name: install deps for zabbix monitoring tool
+  apt: name={{ item }} state=present
+  with_items:
+    - ksh
+    - libxml2-utils
+    - git
+
+- name: clone git repo for virbix
+  git:
+    repo: 'https://github.com/sergiotocalini/virbix.git'
+    dest: /usr/src/virbix
+    version: d5c7ac0309592fa18f90799b2d5b4615a1bc0b77
+
+- name: run virbix installation script
+  command: /usr/src/virbix/deploy_zabbix.sh
+  
