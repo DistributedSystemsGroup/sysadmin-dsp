@@ -30,4 +30,8 @@
   copy: src=zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
   notify:
     - restart zabbix-agent
+- copy: src=userparameter_diskstats.conf dest=/etc/zabbix/zabbix_agentd.d/
+  notify:
+    - restart zabbix-agent
+- copy: src=lld-disks.py dest=/usr/local/bin mode=0755
 
