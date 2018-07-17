@@ -1,7 +1,6 @@
 ^\[\w{3} \w{3} [ :.0-9]+\] \[core:notice\] \[pid [0-9]+\] AH00094: Command line: '/usr/sbin/apache2'$
 ^\[\w{3} \w{3} [ :.0-9]+\] \[mpm_prefork:notice\] \[pid [6718]+\] AH00163: Apache .* configured -- resuming normal operations$
-^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9]{2}/\w{3}/[0-9]{4}[0-9:]+ \+[0-9]{4}\] "(GET|POST|OPTIONS) .+ HTTP/1.[01]" (200|302|304)
-^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9]{2}/\w{3}/[0-9]{4}[0-9:]+ \+[0-9]{4}\] "GET /favicon.ico HTTP/1.1" 404
+^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ - - \[[0-9]{2}/\w{3}/[0-9]{4}[0-9:]+ \+[0-9]{4}\] "(GET|POST|OPTIONS) .+ HTTP/1.[01]" (200|301|302|304|404)
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ apache2\[[0-9]+\]:  \* Reloading Apache httpd web server apache2$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ apache2\[[0-9]+\]:  \*$
 
@@ -55,6 +54,7 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] (docker0|br0|docker_gwbridge|ov-[0-9]+-[[:alnum:]]+): port [0-9]+\(v(eth|xlan)[0-9a-z]+\) entered (disabled|forwarding) state$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] [a-z0-9-]+: renamed from (br|v?eth|vxlan|ov|vx)[0-9a-z-]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] aufs au_opts_verify:[0-9]+:dockerd\[[0-9]+\]: dirperm1 breaks the protection by the permission bits on the lower branch$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] aufs au_plink_put:[0-9]+:dockerd\[[0-9]+\]: pseudo-link is not flushed$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] device v[a-z]+[0-9a-z]+ (left|entered) promiscuous mode$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] IPv6: ADDRCONF\(NETDEV_(UP|CHANGE)\): veth[0-9a-z]+: link (is not|becomes) ready$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] unregister_netdevice: waiting for lo to become free. Usage count = 1$
@@ -123,7 +123,9 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Received signal 15; terminating\.$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Disconnected from 192.168.46.1 port [0-9]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: error: connect_to [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ port [0-9]+: failed\.$
-^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: error: connect_to [a-z0-9.-]+ port [0-9]+: (failed|unknown host \(Name or service not known\))\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: error: connect_to [a-z0-9.-]+( port [0-9]+)?: (failed|unknown host \(Name or service not known\))\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: error: maximum authentication attempts exceeded for root from [0-9.]+ port [0-9]+ ssh2 [preauth]
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: PAM service(sshd) ignoring max retries;
 
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ [a-zA-Z]+\[[[:digit:]]+\]: message repeated [0-9]+ times:
 
@@ -150,6 +152,9 @@ t=[T:+0-9-]+ lvl=info
 [0-9-]+ [:0-9,]+ - INFO  \[ProcessThread\(sid:[0-9]+ cport:[0-9-]+\)::PrepRequestProcessor@[0-9]+\] - Got user-level KeeperException when processing
 
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+( python3\[[0-9]+\]:|) ansible-(stat|user|lineinfile|setup|apt|copy|file):? Invoked
+
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ influxd\[[[:digit:]]+\]: \[httpd\] ::1 - - \[[0-9A-Za-z\/:]+ \+[0-9]{4}\] "POST \/write\?db=telegraf HTTP\/1.1" 204 0 "-" "-" [a-z0-9-]+ [0-9]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ influxd\[[[:digit:]]+\]: ts=[0-9TZ:.-]+ lvl=info
 
 ^[[:blank:]]+at java.lang.Thread.run\(Thread.java:748\)$
 ^[[:blank:]]+at org.apache.zookeeper.server.NIOServerCnxn.doIO\(NIOServerCnxn.java:[0-9]+\)$

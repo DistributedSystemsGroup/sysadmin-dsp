@@ -44,4 +44,12 @@
 - apt: name=msmtp-mta
 - copy: src=msmtprc dest=/etc/msmtprc
 - copy: src=msmtprc-aliases dest=/etc/aliases
-  
+
+- name: install megaraid tool
+  apt_key: state=present url=https://hwraid.le-vert.net/debian/hwraid.le-vert.net.gpg.key
+- apt_repository: repo='deb http://hwraid.le-vert.net/ubuntu xenial main' state=present update_cache=yes filename=hwraid
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+- apt_repository: repo='deb http://hwraid.le-vert.net/ubuntu trusty main' state=present update_cache=yes filename=hwraid
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
+  apt: name=megacli
+
