@@ -1,4 +1,8 @@
 ---
+- name: restart sdumper
+  command: supervisorctl restart sdumper
 - name: restart telegraf
   command: supervisorctl restart telegraf
+- name: update supervisor
+  command: supervisorctl update
 

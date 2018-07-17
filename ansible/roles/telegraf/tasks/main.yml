@@ -12,10 +12,16 @@
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "14"
 - apt_repository: repo='deb http://repos.influxdata.com/ubuntu xenial stable' state=absent update_cache=yes
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+- copy: src=sdumper dest=/usr/local/bin/sdumper owner=root group=root mode=0755
+  notify:
+    - restart sdumper
+- file: path=/mnt/cephfs/datasets/platform/telegraf/{{ ansible_hostname }} owner=telegraf group=telegraf state=directory
 - apt: name=telegraf state=latest
 - apt: name=supervisor state=present
 - service: name=telegraf enabled=no state=stopped
-- copy: src=supervisord.conf dest=/etc/supervisor/conf.d/telegraf.conf owner=root mode=0644
+- template: src=supervisord.conf dest=/etc/supervisor/conf.d/telegraf.conf owner=root mode=0644
+  notify:
+    - update supervisor
 - template: src=telegraf.conf dest=/etc/telegraf/telegraf.conf
   notify:
     - restart telegraf
