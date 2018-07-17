@@ -37,8 +37,8 @@ class novaQueue:
    def get(self, ch, method, properties, body):
       message = json.loads(body)
       try:
-         assert 'oslo.message' in message
-         message = json.loads(message['oslo.message'])
+         if 'oslo.message' in message:
+            message = json.loads(message['oslo.message'])
          # pull out the messages that we care about 
          if message['event_type']:
             if message['event_type'] == 'compute.instance.create.end':
