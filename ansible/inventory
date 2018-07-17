@@ -1,8 +1,8 @@
 [spare]
 
 [all]
-m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3 swap=false
-bfeb ansible_python_interpreter=/usr/bin/python3 swap=true
+m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3 swap=false metric_server=m2
+bfeb ansible_python_interpreter=/usr/bin/python3 swap=true metric_server=m2
 bf1 ansible_python_interpreter=/usr/bin/python3 swap=false
 bf2 ansible_python_interpreter=/usr/bin/python3 swap=false
 bf3 ansible_python_interpreter=/usr/bin/python3 swap=false
