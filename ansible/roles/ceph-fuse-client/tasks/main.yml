@@ -1,0 +1,23 @@
+---
+- name: Add CEPH key
+  apt_key:
+    url: https://download.ceph.com/keys/release.asc
+    state: present
+- name: Add CEPH repository
+  apt_repository:
+    repo: deb https://download.ceph.com/debian-luminous/ {{ ansible_distribution_release }} main
+    state: present
+    filename: ceph
+- name: create ceph config directory
+  file: name=/etc/ceph state=directory owner=root group=root mode=0700
+- name: copy ceph configuration
+  copy: src=/etc/ceph/ceph.conf dest=/etc/ceph/ceph.conf owner=root group=root
+- name: copy ceph keyring
+  copy: src=/etc/ceph/ceph.client.admin.keyring dest=/etc/ceph/ceph.client.admin.keyring owner=root group=root mode=0600
+- name: install ceph FUSE client
+  apt: name=ceph-fuse state=present
+- name: ensure python is installed
+  apt: name=python state=present
+- name: mount cephfs
+  mount: name=/mnt/cephfs src=id=admin fstype=fuse.ceph opts=_netdev,defaults state=mounted
+

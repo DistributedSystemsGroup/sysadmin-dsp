@@ -1,9 +1,26 @@
 ---
+- name: configure bonding module options
+  copy: src=bonding_opts.conf dest=/etc/modprobe.d/bonding.conf owner=root group=root
+
+- name: install ifenslave
+  apt: name=ifenslave state=present
+
 - name: Install Ubuntu cloud keys package
   apt: name=ubuntu-cloud-keyring
 
+- name: Remove Pike Ubuntu cloud repository
+  apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/pike main' filename=pike state=absent update_cache=yes
 - name: Add Pike Ubuntu cloud repository
-  apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/pike main' filename=pike state=present update_cache=yes
+  apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/queens main' filename=openstack state=present update_cache=yes
+
+- name: format VM storage
+  filesystem: dev={{ nova_storage_device }} fstype=ext4
+
+- name: mount VM storage space and add it to fstab
+  mount: fstype=ext4 path=/var/lib/nova src={{ nova_storage_device }} state=mounted
+
+- name: set permissions on nova mountpoint
+  file: path=/var/lib/nova owner=nova group=nova mode=0755 state=directory
 
 - name: install nova-compute package
   apt: name={{ item }}
@@ -21,19 +38,15 @@
   with_items:
     - neutron-plugin-ml2
     - neutron-linuxbridge-agent
+
 - name: Copy neutron.conf file
   template: src=neutron.conf dest=/etc/neutron/neutron.conf owner=root group=neutron mode=0640
   notify:
     - restart neutron-linuxbridge-agent
-- name: Copy ml2_conf.ini file
-  copy: src=ml2_conf.ini dest=/etc/neutron/plugins/ml2/ml2_conf.ini owner=root group=neutron mode=0640
-  notify:
-    - restart neutron-linuxbridge-agent
 - name: Copy linuxbridge_agent.ini file
-  copy: src=linuxbridge_agent.ini dest=/etc/neutron/plugins/ml2/linuxbridge_agent.ini owner=root group=neutron mode=0640
+  template: src=linuxbridge_agent.ini dest=/etc/neutron/plugins/ml2/linuxbridge_agent.ini owner=root group=neutron mode=0640
   notify:
     - restart neutron-linuxbridge-agent
-
 
 - name: install nova.conf file
   template: src=nova.conf dest=/etc/nova/nova.conf owner=nova group=nova mode=0640
@@ -42,6 +55,26 @@
 
 - name: delete Ubuntu Nova package sqlite database
   file: path=/var/lib/nova/nova.sqlite state=absent
+
+- name: let the nova user login for migrations
+  user: shell=/bin/bash name=nova
+
+- name: install ssh public key for nova
+  authorized_key: user=nova key='{{ item }}'
+  with_file:
+    - id_rsa.pub
+
+- name: install private key
+  copy: src=id_rsa dest=/var/lib/nova/.ssh/id_rsa owner=nova group=nova mode=0600
+
+- name: install public key
+  copy: src=id_rsa.pub dest=/var/lib/nova/.ssh/id_rsa.pub owner=nova group=nova mode=0644
+
+- name: disable strict host checking for nova user ssh
+  lineinfile: path=/var/lib/nova/.ssh/config owner=nova group=nova mode=0600 line='StrictHostKeyChecking no' create=yes
+
+- name: reset permissions on nova mountpoint
+  file: path=/var/lib/nova owner=nova group=nova recurse=yes
 
 - name: install deps for zabbix monitoring tool
   apt: name={{ item }} state=present

@@ -1,0 +1,53 @@
+---
+- name: Format Docker disk space
+  filesystem: fstype=ext4 dev={{ docker_device }}
+  when: docker_device is defined
+- name: Mount Docker disk space
+  mount: state=mounted name=/var/lib/docker src={{ docker_device }} fstype=ext4
+  when: docker_device is defined
+
+- name: Install supervisrod
+  apt: name=supervisor state=present
+
+- name: Install Flannel
+  get_url:
+    url: https://github.com/coreos/flannel/releases/download/v0.10.0/flanneld-amd64
+    dest: /opt/flanneld-amd64
+    mode: 0755
+  notify:
+    - restart flannel
+- name: setup flannel startup via supervisord
+  template: src=flannel.conf dest=/etc/supervisor/conf.d/flannel.conf
+  notify:
+    - update supervisor
+
+- name: install pip
+  apt: name=python-pip state=present
+- name: install docker-hostdns
+  pip: name=docker-hostdns
+- name: setup docker-hostdns startup via supervisord
+  copy: src=docker-hostdns.conf dest=/etc/supervisor/conf.d/docker-hostdns.conf
+  notify:
+    - update supervisor
+
+- name: Install Docker repo APT key
+  apt_key: state=present url=https://download.docker.com/linux/ubuntu/gpg
+- name: Install APT repository
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' state=present update_cache=yes filename=docker
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+- name: Install Docker packages
+  apt: name=docker-ce state=present
+- name: Copy configuration file
+  template: src=daemon.json dest=/etc/docker/
+  notify:
+    - restart docker
+- name: create systemd override directory
+  file: name=/etc/systemd/system/docker.service.d state=directory
+- name: Install Docker systemd override
+  copy: src=systemd-docker-override.conf dest=/etc/systemd/system/docker.service.d/override.conf owner=root group=root
+  notify:
+    - restart docker
+    - reload systemd
+- name: Add ubuntu to the docker group
+  user: name=ubuntu groups=docker append=yes
+

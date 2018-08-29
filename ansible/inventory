@@ -1,6 +1,6 @@
 [spare]
 
-[all]
+[servers]
 m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3 swap=false metric_server=m2
 bfeb ansible_python_interpreter=/usr/bin/python3 swap=true metric_server=m2
 bf1 ansible_python_interpreter=/usr/bin/python3 swap=false
@@ -8,10 +8,11 @@ bf2 ansible_python_interpreter=/usr/bin/python3 swap=false
 bf3 ansible_python_interpreter=/usr/bin/python3 swap=false
 bf4 ansible_python_interpreter=/usr/bin/python3 swap=false
 bf5 ansible_python_interpreter=/usr/bin/python3 swap=true
-bf7
-bf8
-bf9
-bf10
+bf7 ansible_python_interpreter=/usr/bin/python3
+bf8 ansible_python_interpreter=/usr/bin/python3
+bf9 ansible_python_interpreter=/usr/bin/python3
+bf10 ansible_python_interpreter=/usr/bin/python3
+bf11 ansible_python_interpreter=/usr/bin/python3
 bf12
 bf13
 bf14
@@ -44,10 +45,14 @@ bf16 osd=true
 bf17 osd=true
 
 [compute]
-bf1 nova_storage=lvm
-bf2 nova_storage=lvm
-bf3 nova_storage=lvm
-bf4 nova_storage=lvm
+bf1 nova_storage_device=/dev/sdb
+bf2 nova_storage_device=/dev/sdc
+bf3 nova_storage_device=/dev/sdc
+bf4 nova_storage_device=/dev/sdc
+bf7 nova_storage_device=/dev/sdb
+bf8 nova_storage_device=/dev/sdb
+bf9 nova_storage_device=/dev/sdb
+bf10 nova_storage_device=/dev/sdb
 
 [zookeeper]
 bf1 zookeeper_id=1
@@ -55,11 +60,6 @@ m2 zookeeper_id=4
 bf11 zookeeper_id=3
 
 [docker]
-bf7 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.7 docker_listen_hostname=bf7.containers.bigfoot.eurecom.fr
-bf8 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.8 docker_listen_hostname=bf8.containers.bigfoot.eurecom.fr
-bf9 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.9 docker_listen_hostname=bf9.containers.bigfoot.eurecom.fr
-bf10 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.10 docker_listen_hostname=bf10.containers.bigfoot.eurecom.fr
-bf12 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.12 docker_listen_hostname=bf12.containers.bigfoot.eurecom.fr
 bf13 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.13 docker_listen_hostname=bf13.containers.bigfoot.eurecom.fr
 bf14 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.14 docker_listen_hostname=bf14.containers.bigfoot.eurecom.fr
 bf15 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.15 docker_listen_hostname=bf15.containers.bigfoot.eurecom.fr
@@ -78,12 +78,6 @@ deepfoot1
 [grafana]
 m2
 
-[cassandra]
-bf5 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/cassandra-log/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
-bf11 cassandra_data_mountpoint=/srv/cassandra cassandra_commitlog=/var/lib/cassandra/commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
-bf12 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/hdfs/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
-bf13 cassandra_data_mountpoint=/mnt/cassandra cassandra_commitlog=/mnt/hdfs/cassandra_commitlog cassandra_data_devices='/dev/sdc,/dev/sdd,/dev/sde'
-
 [datanode]
 bf12
 bf13
@@ -100,3 +94,11 @@ bf22
 [namenode]
 bf12
 
+[zoe-workers]
+192.168.45.11 ansible_ssh_user=ubuntu
+192.168.45.15 ansible_ssh_user=ubuntu
+deepfoot1 ansible_ssh_user=deploy
+bf12 ansible_ssh_user=deploy docker_device=/dev/sdb
+
+[zoe-workers-gpu]
+deepfoot1 ansible_ssh_user=deploy

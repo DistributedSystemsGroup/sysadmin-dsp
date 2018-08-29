@@ -1,0 +1,10 @@
+---
+- name: reload systemd
+  command: systemctl daemon-reload
+- name: update supervisor
+  shell: supervisorctl update
+- name: restart flannel
+  shell: supervisorctl restart flannel
+- name: restart docker
+  service: name=docker state=restarted
+

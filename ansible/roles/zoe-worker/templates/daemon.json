@@ -1,0 +1,19 @@
+{
+  "dns": ["192.168.46.1"],
+  "dns-search": ["cont.local"],
+  "tlsverify": true,
+  "tlscacert": "/mnt/cephfs/admin/cert-authority/demoCA/cacert.pem",
+  "tlscert": "/mnt/cephfs/admin/cert-authority/{{ ansible_hostname }}/cert.pem",
+  "tlskey": "/mnt/cephfs/admin/cert-authority/{{ ansible_hostname }}/key.pem",
+{% if "nvidia_gpus" in group_names %}
+  "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+  },
+  "default-runtime": "nvidia",
+{% endif %}
+  "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
+}
+

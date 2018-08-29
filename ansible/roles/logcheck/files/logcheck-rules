@@ -140,20 +140,13 @@
 t=[T:+0-9-]+ lvl=info
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ grafana-server\[[[:digit:]]+\]: Loading a web page: .* status: success [0-9]+$
 
-[0-9-]+ [:0-9,]+ - INFO  \[NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@[0-9]+\] - Processing (mntr|ruok) command from /192.168.46.1:[0-9]+$
-[0-9-]+ [:0-9,]+ - INFO  \[NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn(Factory|)@[0-9]+\] - Accepted socket connection from /(192.168.46.|127.0.0.)[0-9]+:[0-9]+$
-[0-9-]+ [:0-9,]+ - INFO  \[NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@[0-9]+\] - Closed socket connection for client /(192.168.46.[0-9]+|127.0.0.1):[0-9]+ (which had sessionid [[:alnum:]]+|\(no session established for client\))$
-[0-9-]+ [:0-9,]+ - INFO  \[Thread-[0-9]+:NIOServerCnxn@[0-9]+\] - Closed socket connection for client /192.168.46.1:[0-9]+ \(no session established for client\)$
-[0-9-]+ [:0-9,]+ - INFO  \[Snapshot Thread:FileTxnSnapLog@[0-9]+\] - Snapshotting:
-[0-9-]+ [:0-9,]+ - INFO  \[SyncThread:[0-9]+:FileTxnLog@[0-9]+\] - Creating new log file: log.[[:alnum:]]+$
+[0-9-]+ [:0-9,]+ - INFO  \[.*
 [0-9-]+ [:0-9,]+ - WARN  \[NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@[0-9]+\] - caught end of stream exception$
-[0-9-]+ [:0-9,]+ - INFO  \[NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@[0-9]+\] - Client attempting to establish new session at /(192.168.46.|127.0.0.)[0-9]+:[0-9]+$
-[0-9-]+ [:0-9,]+ - INFO  \[CommitProcessor:[0-9]+:ZooKeeperServer@[0-9]+\] - Established session 0x[[:alnum:]]+ with negotiated timeout 6000 for client /(192.168.46.|127.0.0.)[0-9]+:[0-9]+$
-[0-9-]+ [:0-9,]+ - INFO  \[ProcessThread\(sid:[0-9]+ cport:[0-9-]+\)::PrepRequestProcessor@[0-9]+\] - Got user-level KeeperException when processing
 
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+( python3\[[0-9]+\]:|) ansible-(stat|user|lineinfile|setup|apt|copy|file):? Invoked
 
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ influxd\[[[:digit:]]+\]: \[httpd\] ::1 - - \[[0-9A-Za-z\/:]+ \+[0-9]{4}\] "POST \/write\?db=telegraf HTTP\/1.1" 204 0 "-" "-" [a-z0-9-]+ [0-9]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ influxd\[[[:digit:]]+\]: \[httpd\] .* - - \[[0-9A-Za-z\/:]+ \+[0-9]{4}\] "GET \/query\?db=telegraf.* HTTP\/1.1" 200 [0-9]+ .* [a-z0-9-]+ [0-9]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ influxd\[[[:digit:]]+\]: ts=[0-9TZ:.-]+ lvl=info
 
 ^[[:blank:]]+at java.lang.Thread.run\(Thread.java:748\)$
