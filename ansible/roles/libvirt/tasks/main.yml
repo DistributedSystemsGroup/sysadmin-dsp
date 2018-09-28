@@ -5,6 +5,6 @@
     - restart libvirt-bin
 
 - name: update libvirt init conf
-  copy: src=libvirt-bin dest=/etc/default/libvirt-bin
+  copy: src=libvirtd dest=/etc/default/libvirtd
   notify:
-    - restart libvirt-bin
+    - restart libvirtd

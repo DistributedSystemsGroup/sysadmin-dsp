@@ -1,0 +1,4 @@
+Defaults:neutron !requiretty
+
+neutron ALL = (root) NOPASSWD: /usr/bin/privsep-helper --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/l3_agent.ini --privsep_context neutron.privileged.default *
+
