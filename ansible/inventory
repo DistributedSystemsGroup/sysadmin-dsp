@@ -43,6 +43,11 @@ bf14 osd=true
 bf15 osd=true
 bf16 osd=true
 bf17 osd=true
+bf18 osd=true
+bf19 osd=true
+bf20 osd=true
+bf21 osd=true
+bf22 osd=true
 
 [compute]
 bf1 nova_storage_device=/dev/sdb
@@ -55,22 +60,14 @@ bf9 nova_storage_device=/dev/sdb
 bf10 nova_storage_device=/dev/sdb
 
 [zookeeper]
-bf1 zookeeper_id=1
 m2 zookeeper_id=4
 bf11 zookeeper_id=3
+bf5 zookeeper_id=2
 
-[docker]
-bf13 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.13 docker_listen_hostname=bf13.containers.bigfoot.eurecom.fr
-bf14 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.14 docker_listen_hostname=bf14.containers.bigfoot.eurecom.fr
-bf15 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.15 docker_listen_hostname=bf15.containers.bigfoot.eurecom.fr
-bf16 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.16 docker_listen_hostname=bf16.containers.bigfoot.eurecom.fr
-bf17 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.17 docker_listen_hostname=bf17.containers.bigfoot.eurecom.fr
-bf18 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.18 docker_listen_hostname=bf18.containers.bigfoot.eurecom.fr
-bf19 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.19 docker_listen_hostname=bf19.containers.bigfoot.eurecom.fr
-bf20 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.20 docker_listen_hostname=bf20.containers.bigfoot.eurecom.fr
-bf21 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.21 docker_listen_hostname=bf21.containers.bigfoot.eurecom.fr
-bf22 docker_device=sdb docker_network_iface=em3 address_47=192.168.47.22 docker_listen_hostname=bf22.containers.bigfoot.eurecom.fr
-deepfoot1 docker_network_iface=eno2 address_47=192.168.47.50 docker_listen_hostname=deepfoot1.containers.bigfoot.eurecom.fr
+[etcd]
+m1 etcd_name=infra0
+m2 etcd_name=infra1
+bf11 etcd_name=infra2
 
 [nvidia_gpus]
 deepfoot1
@@ -95,10 +92,21 @@ bf22
 bf12
 
 [zoe-workers]
-192.168.45.11 ansible_ssh_user=ubuntu
-192.168.45.15 ansible_ssh_user=ubuntu
-deepfoot1 ansible_ssh_user=deploy
-bf12 ansible_ssh_user=deploy docker_device=/dev/sdb
+#192.168.45.11 ansible_ssh_user=ubuntu is_vm=True
+#192.168.45.15 ansible_ssh_user=ubuntu is_vm=True
+deepfoot1
+bf12 docker_device=/dev/sdb
+bf13 docker_device=/dev/sdb
+bf14 docker_device=/dev/sdb
+bf15 docker_device=/dev/sdb
+bf16 docker_device=/dev/sdb
+bf17 docker_device=/dev/sdb
+bf18 docker_device=/dev/sdb
+bf19 docker_device=/dev/sdb
+bf20 docker_device=/dev/sdb
+bf21 docker_device=/dev/sdb
+bf22 docker_device=/dev/sdb
 
 [zoe-workers-gpu]
-deepfoot1 ansible_ssh_user=deploy
+deepfoot1
+
