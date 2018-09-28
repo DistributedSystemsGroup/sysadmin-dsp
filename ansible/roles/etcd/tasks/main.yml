@@ -1,0 +1,14 @@
+- name: Download and extract etcd
+  unarchive:
+    dest: /opt
+    src: https://github.com/etcd-io/etcd/releases/download/v3.2.24/etcd-v3.2.24-linux-amd64.tar.gz
+    remote_src: yes
+    creates: /opt/etcd-v3.2.24-linux-amd64/etcd
+
+- name: Add supervisord startup file
+  template:
+    src=etcd.conf
+    dest=/etc/supervisor/conf.d/etcd.conf
+  notify:
+    - update supervisor
+
