@@ -35,3 +35,16 @@
     - restart zabbix-agent
 - copy: src=lld-disks.py dest=/usr/local/bin mode=0755
 
+- name: Add user parameters for ethernet link monitoring
+  copy: src=userparameter_niclink.conf dest=/etc/zabbix/zabbix_agentd.d/
+  notify:
+    - restart zabbix-agent
+- name: Add user parameters for ETCD
+  copy: src=etcd-params.conf dest=/etc/zabbix/zabbix_agentd.d/
+  when: "'etcd' in group_names"
+  notify:
+    - restart zabbix-agent
+- name: Add external script for ETCD
+  copy: src=etcd-stats.py dest=/usr/lib/zabbix/externalscripts/
+  when: "'etcd' in group_names"
+
