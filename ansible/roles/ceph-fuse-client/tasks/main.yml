@@ -5,7 +5,7 @@
     state: present
 - name: Add CEPH repository
   apt_repository:
-    repo: deb https://download.ceph.com/debian-luminous/ {{ ansible_distribution_release }} main
+    repo: deb http://eu.ceph.com/debian-luminous/ {{ ansible_distribution_release }} main
     state: present
     filename: ceph
 - name: create ceph config directory

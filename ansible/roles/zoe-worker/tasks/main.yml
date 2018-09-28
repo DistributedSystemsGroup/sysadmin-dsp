@@ -6,6 +6,11 @@
   mount: state=mounted name=/var/lib/docker src={{ docker_device }} fstype=ext4
   when: docker_device is defined
 
+- name: install bonding options
+  copy: src=bonding_opts.conf dest=/etc/modprobe.d/bonding.conf owner=root group=root
+- name: install ifenslave
+  apt: name=ifenslave state=present
+
 - name: Install supervisrod
   apt: name=supervisor state=present
 
@@ -27,8 +32,9 @@
   pip: name=docker-hostdns
 - name: setup docker-hostdns startup via supervisord
   copy: src=docker-hostdns.conf dest=/etc/supervisor/conf.d/docker-hostdns.conf
-  notify:
-    - update supervisor
+
+- name: update supervisor
+  command: supervisorctl update
 
 - name: Install Docker repo APT key
   apt_key: state=present url=https://download.docker.com/linux/ubuntu/gpg
@@ -50,4 +56,8 @@
     - reload systemd
 - name: Add ubuntu to the docker group
   user: name=ubuntu groups=docker append=yes
+  when: is_vm == True
+- name: Add deploy to the docker group
+  user: name=deploy groups=docker append=yes
+  when: is_vm == False
 
