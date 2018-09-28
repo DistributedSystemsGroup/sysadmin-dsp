@@ -41,9 +41,9 @@ rm /tmp/artifacts.zip
 for image in `cat /mnt/cephfs/zoe-apps/$1/images`; do
   echo "Pulling image $image"
   if [[ $image =~ gpu ]]; then
-    sudo -u venzano ansible -m docker_image -a "name=$image pull=yes" zoe-workers-gpu
+    ansible -m docker_image -a "name=$image pull=yes force=yes" zoe-workers-gpu
   else
-    sudo -u venzano ansible -m docker_image -a "name=$image pull=yes" zoe-workers
+    ansible -m docker_image -a "name=$image pull=yes force=yes" zoe-workers
   fi
 done
 

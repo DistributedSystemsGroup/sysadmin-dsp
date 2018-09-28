@@ -10,6 +10,6 @@ PIPELINE_ID=`curl -s --header "PRIVATE-TOKEN: ${GITLAB_API_TOKEN}" "https://gitl
 ## Pull images on the hosts
 for image in zapps/base zapps/java zapps/python; do
   echo "Pulling image $image:${PIPELINE_ID}"
-  sudo -u venzano ansible -m docker_image -a "name=$image:${PIPELINE_ID} pull=yes" zoe-workers
+  ansible -m docker_image -a "name=$image:${PIPELINE_ID} pull=yes force=yes" zoe-workers
 done
 
