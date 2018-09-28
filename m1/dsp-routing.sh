@@ -47,6 +47,8 @@ start)
     /sbin/iptables -t nat -A bf-nat-postrouting -s 192.168.45.0/24 -o eth0.304 -j SNAT --to-source 192.168.104.218
     /sbin/iptables -t nat -A bf-nat-postrouting -s 192.168.47.0/24 -o eth0.304 -j SNAT --to-source 192.168.104.218
     /sbin/iptables -t nat -A bf-nat-postrouting -d 192.168.47.0/24 -j SNAT --to-source 192.168.47.1
+    /sbin/iptables -t nat -A bf-nat-postrouting -d 192.168.45.0/24 -j SNAT --to-source 192.168.45.1
+    /sbin/iptables -t nat -A bf-nat-postrouting -d 192.168.46.0/24 -j SNAT --to-source 192.168.46.1
     echo "${GREEN}ROUTING STARTED${RESTORE}"
     ;;
 stop)
