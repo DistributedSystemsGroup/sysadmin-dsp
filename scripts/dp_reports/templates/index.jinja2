@@ -1,0 +1,302 @@
+<html>
+<head>
+    <title>Cloud Platform usage reports</title>
+    <script src="/datasets/reports/static/plotly.js"></script>
+    <script src="/datasets/reports/static/wordcloud2.js"></script>
+    <link rel="stylesheet" type="text/css" href="/datasets/reports/static/main.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Cloud platform usage report from {{ time_start.ctime() }} to {{ time_end.ctime() }}</h1>
+<h2>Zoe</h2>
+<div class="row">
+    <div id="zoe_1" class="plot"></div>
+    <div id="zoe_2" class="plot"></div>
+</div>
+
+<div class="row">
+    <div id="zoe_3" class="plot"></div>
+    <div id="zoe_4" class="plot"></div>
+</div>
+
+<h2>Cloud platform</h2>
+<div class="row">
+    <div id="cp_1" class="map"></div>
+    <div class="plot table">
+        <table>
+            <thead>
+            <tr>
+                <th>IP</th>
+                <th>Reverse DNS</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in cp_1['table_rows'] %}
+            <tr>
+                <td><a href="https://censys.io/ipv4/{{ cp_1['ips'][row] }}/table">{{ cp_1['ips'][row] }}</a></td>
+                <td>{{ cp_1['reverse_dns'][row] }}</td>
+                <td>{{ cp_1['sizes'][row] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div id="cp_2" class="map"></div>
+    <div class="plot table">
+        <table>
+            <thead>
+            <tr>
+                <th>Source</th>
+                <th>Dest IP</th>
+                <th>Reverse DNS</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in cp_2['table_rows'] %}
+            <tr>
+                <td>{{ cp_2['sources'][row] }}</td>
+                <td><a href="https://censys.io/ipv4/{{ cp_2['ips'][row] }}/table">{{ cp_2['ips'][row] }}</a></td>
+                <td>{{ cp_2['reverse_dns'][row] }}</td>
+                <td>{{ cp_2['sizes'][row] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h2>OpenStack (by user)</h2>
+<div class="row">
+        <div id="os_1" class="plot"></div>
+        <div id="os_2" class="plot"></div>
+        <div id="os_3" class="plot"></div>
+        <div id="os_4" class="plot"></div>
+</div>
+
+<h2>OpenStack (by project)</h2>
+<div class="row">
+        <div id="osp_1" class="plot"></div>
+        <div id="osp_2" class="plot"></div>
+        <div id="osp_3" class="plot"></div>
+        <div id="osp_4" class="plot"></div>
+</div>
+
+<script>
+	Plotly.plot('zoe_1', [{
+            x: {{ plot_1['usernames'] }},
+            y: {{ plot_1['executions'] }},
+            type: "bar"
+        }],
+        {
+            title: "{{ plot_1['title'] }}",
+        }
+    );
+
+	WordCloud(document.getElementById('zoe_2'), {
+	    list: {{ plot_2['wordlist'] }},
+        fontFamily: 'Times, serif',
+        rotateRatio: 0.5,
+        rotationSteps: 2,
+        gridSize: Math.round(16 * document.getElementById('zoe_2').scrollWidth / 1024),
+        shape: 'square',
+        minSize: 3
+	});
+
+    Plotly.plot('zoe_3', [{
+	        labels: {{ plot_3['queue_times'] }},
+	        values: {{ plot_3['counts'] }},
+	        type: "pie",
+        }],
+        {
+            title: "{{ plot_3['title'] }}",
+        }
+    );
+
+    Plotly.plot('zoe_4', [{
+	    labels: {{ plot_4['run_times'] }},
+	    values: {{ plot_4['counts'] }},
+	    type: "pie"
+    }],
+        {
+            title: "{{ plot_4['title'] }}",
+        }
+    );
+
+    Plotly.plot(cp_1, [{
+        type: 'scattergeo',
+        lat: {{ cp_1['lats'] }},
+        lon: {{ cp_1['longs'] }},
+        hoverinfo: 'text',
+        text: {{ cp_1['ips'] }},
+        marker: {
+            color: {{ cp_1['sizes'] }},
+            line: {
+                color: 'black',
+                width: 1
+            },
+            showscale: true,
+            autocolorscale: true,
+        },
+    }], {
+        title: 'Incoming traffic to public SSH service',
+        showlegend: false,
+        autosize: true,
+        geo: {
+            scope: 'world',
+            showland: true,
+            landcolor: 'rgb(217, 217, 217)',
+            subunitwidth: 1,
+            countrywidth: 1,
+            subunitcolor: 'rgb(255,255,255)',
+            countrycolor: 'rgb(255,255,255)'
+        },
+    });
+
+        Plotly.plot(cp_2, [{
+        type: 'scattergeo',
+        lat: {{ cp_2['lats'] }},
+        lon: {{ cp_2['longs'] }},
+        hoverinfo: 'text',
+        text: {{ cp_2['ips'] }},
+        marker: {
+            color: {{ cp_2['sizes'] }},
+            line: {
+                color: 'black',
+                width: 1
+            },
+            showscale: true,
+            autocolorscale: true,
+        },
+    }], {
+        title: 'Outgoing traffic',
+        showlegend: false,
+        autosize: true,
+        geo: {
+            scope: 'world',
+            showland: true,
+            landcolor: 'rgb(217, 217, 217)',
+            subunitwidth: 1,
+            countrywidth: 1,
+            subunitcolor: 'rgb(255,255,255)',
+            countrycolor: 'rgb(255,255,255)'
+        },
+    });
+
+    Plotly.plot('os_1', [{
+            x: {{ os_1['users'] }},
+            y: {{ os_1['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "Reserved volume storage",
+            yaxis: {
+                ticksuffix: 'B',
+                tickformat: '.2s'
+            }
+        }
+    );
+
+	Plotly.plot('os_2', [{
+            x: {{ os_2['users'] }},
+            y: {{ os_2['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "VM disk reserved",
+            yaxis: {
+                ticksuffix: 'B',
+                tickformat: '.2s'
+            }
+        }
+    );
+
+    Plotly.plot('os_3', [{
+            x: {{ os_3['users'] }},
+            y: {{ os_3['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "VM memory reserved",
+            yaxis: {
+                ticksuffix: 'B',
+                tickformat: '.2s'
+            }
+        }
+    );
+
+	Plotly.plot('os_4', [{
+            x: {{ os_4['users'] }},
+            y: {{ os_4['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "VM vcpus reserved",
+            yaxis: {
+                tickformat: '.2s'
+            }
+        }
+    );
+
+    Plotly.plot('osp_1', [{
+            x: {{ osp_1['users'] }},
+            y: {{ osp_1['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "Reserved volume storage",
+            yaxis: {
+                ticksuffix: 'B',
+                tickformat: '.2s'
+            }
+        }
+    );
+
+	Plotly.plot('osp_2', [{
+            x: {{ osp_2['users'] }},
+            y: {{ osp_2['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "VM disk reserved",
+            yaxis: {
+                ticksuffix: 'B',
+                tickformat: '.2s'
+            }
+        }
+    );
+
+    Plotly.plot('osp_3', [{
+            x: {{ osp_3['users'] }},
+            y: {{ osp_3['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "VM memory reserved",
+            yaxis: {
+                ticksuffix: 'B',
+                tickformat: '.2s'
+            }
+        }
+    );
+
+	Plotly.plot('osp_4', [{
+            x: {{ osp_4['users'] }},
+            y: {{ osp_4['sizes'] }},
+            type: "bar"
+        }],
+        {
+            title: "VM vcpus reserved",
+            yaxis: {
+                tickformat: '.2s'
+            }
+        }
+    );
+
+</script>
+</body>
+</html>
