@@ -14,7 +14,7 @@ rawurlencode() {
   for (( pos=0 ; pos<strlen ; pos++ )); do
      c=${string:$pos:1}
      case "$c" in
-        [-_.~a-zA-Z0-9] ) o="${c}" ;;
+        [-_~a-zA-Z0-9] ) o="${c}" ;;
         * )               printf -v o '%%%02x' "'$c"
      esac
      encoded+="${o}"
@@ -28,6 +28,7 @@ GITLAB_API_TOKEN=`cat /mnt/cephfs/admin/gitlab_api_token.txt`
 PROJECT_NAME_ENC=`rawurlencode zoe-apps/$1`
 
 ## Populate the ZApp Shop
+echo curl --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" "https://gitlab.eurecom.fr/api/v4/projects/${PROJECT_NAME_ENC}/jobs/artifacts/master/download?job=test:json" -o /tmp/artifacts.zip
 curl --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" "https://gitlab.eurecom.fr/api/v4/projects/${PROJECT_NAME_ENC}/jobs/artifacts/master/download?job=test:json" -o /tmp/artifacts.zip
 
 rm -Rf /mnt/cephfs/zoe-apps/$1
