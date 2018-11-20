@@ -7,7 +7,8 @@
     - rsyslog
     - telegraf
     - zabbix
-    - logcheck
+    - graylog-sidecar
+    - webmin
   tasks:
     - name: Clean-up left-over packages
       apt: autoremove=yes
