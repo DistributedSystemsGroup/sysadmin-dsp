@@ -1,17 +1,17 @@
 [spare]
 
 [servers]
-m2 log_aggregator=true ansible_python_interpreter=/usr/bin/python3 swap=false metric_server=m2
+m2 swap=true metric_server=m2
 bfeb ansible_python_interpreter=/usr/bin/python3 swap=true metric_server=m2
 bf1 ansible_python_interpreter=/usr/bin/python3 swap=false
 bf2 ansible_python_interpreter=/usr/bin/python3 swap=false
-bf3 ansible_python_interpreter=/usr/bin/python3 swap=false
-bf4 ansible_python_interpreter=/usr/bin/python3 swap=false
+bf3 swap=false
+bf4 swap=false
 bf5 ansible_python_interpreter=/usr/bin/python3 swap=true
 bf7 ansible_python_interpreter=/usr/bin/python3
-bf8 ansible_python_interpreter=/usr/bin/python3
+bf8 
 bf9 ansible_python_interpreter=/usr/bin/python3
-bf10 ansible_python_interpreter=/usr/bin/python3
+bf10 
 bf11 ansible_python_interpreter=/usr/bin/python3
 bf12
 bf13
@@ -24,7 +24,7 @@ bf19
 bf20
 bf21
 bf22
-deepfoot1 ansible_python_interpreter=/usr/bin/python3
+deepfoot1
 
 [ceph]
 m2 monitor=true ceph_iface=eth0.46
@@ -52,12 +52,8 @@ bf22 osd=true
 [compute]
 bf1 nova_storage_device=/dev/sdb
 bf2 nova_storage_device=/dev/sdc
-bf3 nova_storage_device=/dev/sdc
-bf4 nova_storage_device=/dev/sdc
 bf7 nova_storage_device=/dev/sdb
-bf8 nova_storage_device=/dev/sdb
 bf9 nova_storage_device=/dev/sdb
-bf10 nova_storage_device=/dev/sdb
 
 [zookeeper]
 m2 zookeeper_id=4
@@ -91,10 +87,36 @@ bf22
 [namenode]
 bf12
 
+[kafka]
+bf5
+bf11
+
+[postgresql]
+bf5
+bf11
+
+[rabbitmq]
+bf5
+
+[apt-cacher]
+bf5
+
+[zoe-server]
+bf11
+
+[openstack-server]
+bfeb
+
+[redis]
+m1
+bfeb
+
 [zoe-workers]
-#192.168.45.11 ansible_ssh_user=ubuntu is_vm=True
-#192.168.45.15 ansible_ssh_user=ubuntu is_vm=True
 deepfoot1
+bf3 docker_device=/dev/sdc
+bf4 docker_device=/dev/sdc
+bf8 docker_device=/dev/sdb
+bf10 docker_device=/dev/sdb
 bf12 docker_device=/dev/sdb
 bf13 docker_device=/dev/sdb
 bf14 docker_device=/dev/sdb
