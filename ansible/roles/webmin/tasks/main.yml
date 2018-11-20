@@ -1,0 +1,17 @@
+- name: Add repository key
+  apt_key:
+    url: http://www.webmin.com/jcameron-key.asc
+    state: present
+
+- name: Add repository
+  apt_repository:
+    repo: deb http://download.webmin.com/download/repository sarge contrib
+    state: present
+    filename: webmin
+
+- name: Install latest webmin package
+  apt:
+    name: webmin
+    state: latest
+    update_cache: yes
+
