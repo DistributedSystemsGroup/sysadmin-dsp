@@ -1,0 +1,57 @@
+server_url: http://192.168.45.2:9000/api/
+update_interval: 10
+tls_skip_verify: false
+send_status: true
+list_log_files:
+collector_id: file:/etc/graylog/collector-sidecar/collector-id
+cache_path: /var/cache/graylog/collector-sidecar
+log_path: /var/log/graylog/collector-sidecar
+log_rotation_time: 86400
+log_max_age: 604800
+tags:
+    - linux
+{% if ansible_hostname in groups['ceph'] %}
+    - ceph
+{% endif %}
+{% if ansible_hostname in groups['etcd'] %}
+    - etcd
+{% endif %}
+{% if ansible_hostname in groups['zookeeper'] %}
+    - zookeeper
+{% endif %}
+{% if ansible_hostname in groups['compute'] %}
+    - compute
+{% endif %}
+{% if ansible_hostname in groups['datanode'] %}
+    - datanode
+{% endif %}
+{% if ansible_hostname in groups['namenode'] %}
+    - namenode
+{% endif %}
+{% if ansible_hostname in groups['postgresql'] %}
+    - postgresql
+{% endif %}
+{% if ansible_hostname in groups['rabbitmq'] %}
+    - rabbitmq
+{% endif %}
+{% if ansible_hostname in groups['apt-cacher'] %}
+    - apt-cacher
+{% endif %}
+{% if ansible_hostname in groups['kafka'] %}
+    - kafka
+{% endif %}
+{% if ansible_hostname in groups['openstack-server'] %}
+    - openstack-server
+{% endif %}
+{% if ansible_hostname in groups['zoe-server'] %}
+    - zoe-server
+{% endif %}
+{% if ansible_hostname in groups['zoe-workers'] or ansible_hostname in groups['zoe-workers-gpu'] %}
+    - zoe-worker
+{% endif %}
+backends:
+    - name: filebeat
+      enabled: true
+      binary_path: /usr/bin/filebeat
+      configuration_path: /etc/graylog/collector-sidecar/generated/filebeat.yml
+
