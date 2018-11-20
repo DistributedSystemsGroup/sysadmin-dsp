@@ -1,0 +1,2 @@
+management_eth: em1
+data_eth: bond0
